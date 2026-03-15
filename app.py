@@ -7,7 +7,7 @@ from pymongo import MongoClient, GEOSPHERE
 
 app = Flask(__name__)
 
-MONGO_URI = os.environ.get("MONGO_URL", "mongodb://localhost:27017/")
+MONGO_URI = os.environ.get("MONGO_URL")
 DB_NAME   = "pharmacies_bf"
 _client   = None
 
