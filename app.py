@@ -22,7 +22,7 @@ REFERENCE_GROUP = 1
 def get_db():
     global _client
     if _client is None:
-        uri = os.environ.get("MONGO_URL", "mongodb://localhost:27017/")
+        uri = os.environ.get("MONGO_URL", "mongodb://mongo:lgaxccbQOSQWniPWCLtIKYcrYjeLVITm@mongodb.railway.internal:27017")
         print(f"[DB] Connexion : {uri[:40]}")
         _client = MongoClient(uri)
     return _client[DB_NAME]
