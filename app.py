@@ -22,9 +22,10 @@ REFERENCE_GROUP = 1
 def get_db():
     global _client
     if _client is None:
-        _client = MongoClient(MONGO_URI)
+        uri = os.environ.get("MONGO_URL", "mongodb://localhost:27017/")
+        print(f"[DB] Connexion : {uri[:40]}")
+        _client = MongoClient(uri)
     return _client[DB_NAME]
-
 
 def auto_init_db():
     try:
