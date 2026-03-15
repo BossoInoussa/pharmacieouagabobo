@@ -1,0 +1,3023 @@
+{
+  "ville": "Ouagadougou",
+  "pays": "Burkina Faso",
+  "description": "Liste officielle des pharmacies de Ouagadougou avec groupes de garde",
+  "sources": [
+    "ListePharmacieOuage.xlsx",
+    "Google Maps Places API"
+  ],
+  "note_groupes": "4 groupes tournants. Semaine de garde : samedi 12h00 → samedi suivant 12h00.",
+  "derniere_mise_a_jour": "2026-03-10",
+  "note_coordonnees": "Coordonnées issues de Google Maps Places API. precision_gps=haute : position précise confirmée. estimée : centroïde de quartier/description textuelle.",
+  "pharmacies": [
+    {
+      "id": "oua_001",
+      "nom": "Pharmacie Avenir",
+      "groupe_garde": 1,
+      "telephone": "+22625361338",
+      "adresse_description": "Avenue Babanguida, 1200 Logements, face station Total",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4939591,
+          12.3752224
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_002",
+      "nom": "Pharmacie Bao-Wendsom",
+      "groupe_garde": 1,
+      "telephone": "+22625414499",
+      "adresse_description": "Tampouy, rue 22.158, Kilwin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5774674,
+          12.4034896
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_003",
+      "nom": "Pharmacie Barkwendé",
+      "groupe_garde": 1,
+      "telephone": "+22625408590",
+      "adresse_description": "Arrdt 8, Sect 35, Face cité Rimkièta",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.6084379,
+          12.3740155
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_004",
+      "nom": "Pharmacie des Béatitudes",
+      "groupe_garde": 1,
+      "telephone": "+22625374711",
+      "adresse_description": "Blvd France-Afrique, Ouaga 2000, en face cité Azimo",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.528376,
+          12.307367
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_005",
+      "nom": "Pharmacie Benaia",
+      "groupe_garde": 1,
+      "telephone": "+22625372830",
+      "adresse_description": "Katre-yaare, ex secteur 29",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4792868,
+          12.3499844
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_006",
+      "nom": "Pharmacie Bonheur",
+      "groupe_garde": 1,
+      "telephone": "+22663738182",
+      "adresse_description": "Bonheur Ville, à 100m de l'Église du 75e anniversaire",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5551909,
+          12.3139852
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_007",
+      "nom": "Pharmacie Camille",
+      "groupe_garde": 1,
+      "telephone": "+22661801477",
+      "adresse_description": "Dassasgho, non loin de l'Hôtel des Finances",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4788303,
+          12.3757877
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_008",
+      "nom": "Pharmacie du Centre",
+      "groupe_garde": 1,
+      "telephone": "+22625311660",
+      "adresse_description": "570 Avenue de la Nation, Koulouba, collée à Telecel",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5243046,
+          12.3701112
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_009",
+      "nom": "Pharmacie Crystal",
+      "groupe_garde": 1,
+      "telephone": "+22660460808",
+      "adresse_description": "Face à la Mairie Arrdt 9, secteur 38 vers Centre Don Orione",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5593886,
+          12.4195354
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_010",
+      "nom": "Pharmacie des Apôtres",
+      "groupe_garde": 1,
+      "telephone": "+22625380382",
+      "adresse_description": "Arrdt 12, Sect 52, non loin Église Notre Dame des Apôtres",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5125047,
+          12.327067
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_011",
+      "nom": "Pharmacie Desa",
+      "groupe_garde": 1,
+      "telephone": "+22625475050",
+      "adresse_description": "Tanghin, non loin de l'Hôtel Ricardo",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5244258,
+          12.3914216
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_012",
+      "nom": "Pharmacie Diaby",
+      "groupe_garde": 1,
+      "telephone": "+22625335000",
+      "adresse_description": "Face au Festival des Glaces à Koulouba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5168797,
+          12.3652843
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_013",
+      "nom": "Pharmacie El-Wanoogo",
+      "groupe_garde": 1,
+      "telephone": "+22625407022",
+      "adresse_description": "Côté du Marché de Wayalghin, non loin Clinique de l'Est",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4635623,
+          12.3986684
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_014",
+      "nom": "Pharmacie Elite",
+      "groupe_garde": 1,
+      "telephone": "+22666261274",
+      "adresse_description": "Avenue Yennega, route de Yagma",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.609766,
+          12.3965179
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_015",
+      "nom": "Pharmacie Hope",
+      "groupe_garde": 1,
+      "telephone": "+22671142222",
+      "adresse_description": "Route de Fada, Nioko 1, Saaba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4322349,
+          12.4055655
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_016",
+      "nom": "Pharmacie Jober",
+      "groupe_garde": 1,
+      "telephone": "+22625455175",
+      "adresse_description": "Immeuble Simporé, Avenue Dieudonné, Pissy",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5561819,
+          12.3241372
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_017",
+      "nom": "Pharmacie Kaboré Dominique",
+      "groupe_garde": 1,
+      "telephone": "+22625384884",
+      "adresse_description": "200m du rond-point Patte d'oie, Blvd des Martyrs",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5263706,
+          12.3299577
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_018",
+      "nom": "Pharmacie Katra (ex Silmissin)",
+      "groupe_garde": 1,
+      "telephone": "+22625366127",
+      "adresse_description": "Kalgondé, après la gare RAHIMO",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4911107,
+          12.3564914
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_019",
+      "nom": "Pharmacie Keneya",
+      "groupe_garde": 1,
+      "telephone": "+22625307138",
+      "adresse_description": "Avenue Oumarou Kanazoe, côté ouest lycée Municipal Bambata",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5329146,
+          12.3582695
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_020",
+      "nom": "Pharmacie Kossodo",
+      "groupe_garde": 1,
+      "telephone": "+22625356304",
+      "adresse_description": "En face de l'abattoir de Kossodo, après la BOA",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4733789,
+          12.4172523
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_021",
+      "nom": "Pharmacie Lanibougna",
+      "groupe_garde": 1,
+      "telephone": "+22670981480",
+      "adresse_description": "Tanghin, quartier Nonghin, non loin Station Radar",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5238647,
+          12.4158239
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_022",
+      "nom": "Pharmacie Lanzané",
+      "groupe_garde": 1,
+      "telephone": "+22625471065",
+      "adresse_description": "En face Auto-Ecole Magnificat, Zone Une (1)",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.464459,
+          12.3627661
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_023",
+      "nom": "Pharmacie Les Champions",
+      "groupe_garde": 1,
+      "telephone": "+22651001525",
+      "adresse_description": "Environ 100m du marché de 14 Yaar, Dassasgho",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4605181,
+          12.3795412
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_024",
+      "nom": "Pharmacie Liberté",
+      "groupe_garde": 1,
+      "telephone": "+22625307452",
+      "adresse_description": "60m de la station SHELL de la cité an III, vers marché Sankar-yaare",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5317193,
+          12.3776758
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_025",
+      "nom": "Pharmacie Lina",
+      "groupe_garde": 1,
+      "telephone": "+22673483565",
+      "adresse_description": "Avenue Kwamé N'Krumah non loin du Paradis des Meilleurs Vins",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5168325,
+          12.3552083
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_026",
+      "nom": "Pharmacie Magnificat",
+      "groupe_garde": 1,
+      "telephone": "+22625412990",
+      "adresse_description": "Sect 50 Karpala, 1km après rue Sankara Inoussa",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4764567,
+          12.3289477
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_027",
+      "nom": "Pharmacie Maré",
+      "groupe_garde": 1,
+      "telephone": "+22625341128",
+      "adresse_description": "Gounghin, non loin du Stade du 4 Août",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5505374,
+          12.366049
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_028",
+      "nom": "Pharmacie Minitché",
+      "groupe_garde": 1,
+      "telephone": "+22672257676",
+      "adresse_description": "Bonheur Ville, non loin du rond-point de la transition",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5720447,
+          12.2902653
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_029",
+      "nom": "Pharmacie Monderou",
+      "groupe_garde": 1,
+      "telephone": "+22625340528",
+      "adresse_description": "Quartier Nonsin, face station OTAM, non loin CSPS de Nonsin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5637845,
+          12.3760175
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_030",
+      "nom": "Pharmacie Nouvelle",
+      "groupe_garde": 1,
+      "telephone": "+22625306133",
+      "adresse_description": "Non loin station Petrofa Cissin, croisement circulaire",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5493024,
+          12.3331291
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_031",
+      "nom": "Pharmacie Panacea",
+      "groupe_garde": 1,
+      "telephone": "+22625366688",
+      "adresse_description": "Rue Gurme, Zone I",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4667743,
+          12.371774
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_032",
+      "nom": "Pharmacie Pelega",
+      "groupe_garde": 1,
+      "telephone": "+22625350501",
+      "adresse_description": "Arrdt 3, Avenue du Yatenga, 100m du rond-point de la jeunesse",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5705151,
+          12.3887476
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_033",
+      "nom": "Pharmacie Rayib-Tiga",
+      "groupe_garde": 1,
+      "telephone": "+22661802052",
+      "adresse_description": "Av. Jean-Baptiste Ouedraogo, 800m Nord Clinique Notre-Dame-de-la-Paix",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5063178,
+          12.40522
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_034",
+      "nom": "Pharmacie du Rivage",
+      "groupe_garde": 1,
+      "telephone": "+22625341939",
+      "adresse_description": "Av. du Kadiogo, 200m Est échangeur de l'Ouest, face ECOBANK Gounghin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5524409,
+          12.353903
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_035",
+      "nom": "Pharmacie Saint Bernard",
+      "groupe_garde": 1,
+      "telephone": "+22625451482",
+      "adresse_description": "Face trame d'accueil Ouaga 2000, Av. Ousmane Sembène",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4888735,
+          12.3122831
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_036",
+      "nom": "Pharmacie Saint Jean",
+      "groupe_garde": 1,
+      "telephone": "+22625370033",
+      "adresse_description": "Blvd des Tensoba, Sanyiri, 500m de l'Hôpital de Bogodogo",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4937765,
+          12.3428287
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_037",
+      "nom": "Pharmacie Siloé",
+      "groupe_garde": 1,
+      "telephone": "+22625315068",
+      "adresse_description": "Samandin, Av. Bassawarga, face Château Mogho Naaba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5272432,
+          12.3558777
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_038",
+      "nom": "Pharmacie Song-Taaba",
+      "groupe_garde": 1,
+      "telephone": "+22625483382",
+      "adresse_description": "100m de la SONABEL Bendogo, Cité de l'avenir, Dassasgho",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4599384,
+          12.3948954
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_039",
+      "nom": "Pharmacie St François d'Assise",
+      "groupe_garde": 1,
+      "telephone": "+22625368585",
+      "adresse_description": "Zone du bois, non loin agence ONATEL",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4905646,
+          12.3876309
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_040",
+      "nom": "Pharmacie Talè",
+      "groupe_garde": 1,
+      "telephone": "+22671620808",
+      "adresse_description": "Route de Bobo, entre stations Total et Shell, lycée Bethesda",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5579,
+          12.323
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_041",
+      "nom": "Pharmacie Tenedia",
+      "groupe_garde": 1,
+      "telephone": "+22663930019",
+      "adresse_description": "Kamboinsin, en face de 2IE",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5494816,
+          12.4339155
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_042",
+      "nom": "Pharmacie Tengandogo",
+      "groupe_garde": 1,
+      "telephone": "+22601103382",
+      "adresse_description": "100m après le tournant du CHU Tengandogo à droite",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5304433,
+          12.2613124
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_043",
+      "nom": "Pharmacie Trypano",
+      "groupe_garde": 1,
+      "telephone": "+22625332941",
+      "adresse_description": "Derrière le CNTS, Paspanga, près station OTAM",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5102194,
+          12.3807982
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_044",
+      "nom": "Pharmacie Wend-La-Laafi",
+      "groupe_garde": 1,
+      "telephone": "+22625431213",
+      "adresse_description": "Quartier Pissy, Route de Bobo, face station Shell de Pissy",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.572761,
+          12.3422587
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_045",
+      "nom": "Pharmacie Wend-Lamita",
+      "groupe_garde": 1,
+      "telephone": "+22678836341",
+      "adresse_description": "Sect 8, Avenue du Yatenga, face école Kologh-Naba, Hamdalaye",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5499241,
+          12.380624
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_046",
+      "nom": "Pharmacie Yathrib",
+      "groupe_garde": 1,
+      "telephone": "+22670249763",
+      "adresse_description": "200m du marché de Saaba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4175247,
+          12.371567
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_047",
+      "nom": "Pharmacie Yentema",
+      "groupe_garde": 1,
+      "telephone": "+22656560000",
+      "adresse_description": "En face du Marché de Nagrin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5295954,
+          12.2954179
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_048",
+      "nom": "Pharmacie Adadoa",
+      "groupe_garde": 2,
+      "telephone": "+22663883939",
+      "adresse_description": "Entre CMA Pissy et Centre Médical Source de Vie",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.56116,
+          12.332294
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_049",
+      "nom": "Pharmacie Aéroport",
+      "groupe_garde": 2,
+      "telephone": "+22625314222",
+      "adresse_description": "Face ASECNA, 500m Aéroport International de Ouagadougou",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5213054,
+          12.3504685
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_050",
+      "nom": "Pharmacie Agoro Rood-Wooko",
+      "groupe_garde": 2,
+      "telephone": "+22625308890",
+      "adresse_description": "Marché Rood Wooko, face à DIACFA Librairie",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5247,
+          12.37
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_051",
+      "nom": "Pharmacie Amaro",
+      "groupe_garde": 2,
+      "telephone": "+22625343328",
+      "adresse_description": "Av. Kadiogo, Gounghin Petit Paris",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5398363,
+          12.3610293
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_052",
+      "nom": "Pharmacie Ar-Rahma",
+      "groupe_garde": 2,
+      "telephone": "+22625350986",
+      "adresse_description": "Av. Yatenga, Tampouy, face à la Caisse Populaire",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5738866,
+          12.3895173
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_053",
+      "nom": "Pharmacie Augustine",
+      "groupe_garde": 2,
+      "telephone": "+22625411400",
+      "adresse_description": "Ouaga 200, 300m échangeur en partance vers monument des martyres",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5030942,
+          12.325577
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_054",
+      "nom": "Pharmacie Boulmiougou",
+      "groupe_garde": 2,
+      "telephone": "+22625431268",
+      "adresse_description": "Arrdt 6, Sect 27, rue de Boassa, Pissy",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5795391,
+          12.3349939
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_055",
+      "nom": "Pharmacie Cathédrale",
+      "groupe_garde": 2,
+      "telephone": "+22625654628",
+      "adresse_description": "38 Av. de la cathédrale, côté Ouest cathédrale, face station TOTAL",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5242517,
+          12.363739
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_056",
+      "nom": "Pharmacie Cité An 3",
+      "groupe_garde": 2,
+      "telephone": "+22625331966",
+      "adresse_description": "Larlé, en face de la maternité Pogbi",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5365242,
+          12.3774146
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_057",
+      "nom": "Pharmacie Danouma",
+      "groupe_garde": 2,
+      "telephone": "+22625395554",
+      "adresse_description": "Bonheur Ville, 300m du rond-point de la transition",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.555,
+          12.292
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_058",
+      "nom": "Pharmacie Dapoya",
+      "groupe_garde": 2,
+      "telephone": "+22625313201",
+      "adresse_description": "Dapoya, face immeuble Acimex, Sankar-Yaaré",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5239254,
+          12.3799053
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_059",
+      "nom": "Pharmacie Delwindé",
+      "groupe_garde": 2,
+      "telephone": "+22625367280",
+      "adresse_description": "Sect 42, Arrdt 10, à 700m échangeur de l'Est (Kossodo) RN3",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4721879,
+          12.4009632
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_060",
+      "nom": "Pharmacie Denisa",
+      "groupe_garde": 2,
+      "telephone": "+22671827660",
+      "adresse_description": "Secteur 14, Komsilga, non loin CHU Tengandogo",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.529016,
+          12.2535504
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_061",
+      "nom": "Pharmacie du Faso",
+      "groupe_garde": 2,
+      "telephone": "+22625381929",
+      "adresse_description": "Blvd France-Afrique, 300m agence BOA, Patte-d'oie",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5280613,
+          12.3222074
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_062",
+      "nom": "Pharmacie Flayiri",
+      "groupe_garde": 2,
+      "telephone": "+22625407344",
+      "adresse_description": "ZAD, face à la Station PETROFA",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5080412,
+          12.3370658
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_063",
+      "nom": "Pharmacie Hamdalaye",
+      "groupe_garde": 2,
+      "telephone": "+22625343694",
+      "adresse_description": "Quartier Hamdalaye sect 8, près marché du 10 Yaar",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5513663,
+          12.3752816
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_064",
+      "nom": "Pharmacie Heera",
+      "groupe_garde": 2,
+      "telephone": "+22625316610",
+      "adresse_description": "Av. Mogho Naaba, non loin église Jean XXIII",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5231887,
+          12.3564056
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_065",
+      "nom": "Pharmacie Jabnéel",
+      "groupe_garde": 2,
+      "telephone": "+22625366601",
+      "adresse_description": "Route côté Sud SONABEL Bendego à 700m",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4579507,
+          12.3891982
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_066",
+      "nom": "Pharmacie Jourdain",
+      "groupe_garde": 2,
+      "telephone": "+22625360686",
+      "adresse_description": "Blvd Tansoba, 100m de l'hôpital Pédiatrique",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4742603,
+          12.3730362
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_067",
+      "nom": "Pharmacie Karpala",
+      "groupe_garde": 2,
+      "telephone": "+22625371414",
+      "adresse_description": "Route CFAO-Karpala (Hôpital ex-Sect 30)",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4926434,
+          12.3321873
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_068",
+      "nom": "Pharmacie Koulouba",
+      "groupe_garde": 2,
+      "telephone": "+22625311918",
+      "adresse_description": "Koulouba, 200m côté Ouest marché de Boins-Yaaré",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5096143,
+          12.3666291
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_069",
+      "nom": "Pharmacie Koumajer",
+      "groupe_garde": 2,
+      "telephone": "+22625402020",
+      "adresse_description": "Non loin du Palais de Justice, Karpala",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5196603,
+          12.3714277
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_070",
+      "nom": "Pharmacie La Roche",
+      "groupe_garde": 2,
+      "telephone": "+22625395132",
+      "adresse_description": "Tampouy, Arrdt 3, sect 15, face groupe scolaire NAA-TOUGOULE",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5821092,
+          12.3957916
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_071",
+      "nom": "Pharmacie Les Lauriers",
+      "groupe_garde": 2,
+      "telephone": "+22625483755",
+      "adresse_description": "Karpala, sur la voie des Pylônes, non loin Cave Simporé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4720898,
+          12.3355269
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_072",
+      "nom": "Pharmacie Marlass",
+      "groupe_garde": 2,
+      "telephone": "+22678550052",
+      "adresse_description": "Tanghin sect 17, après Arb-Yaar, face boulangerie Fatim",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.54027,
+          12.4058787
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_073",
+      "nom": "Pharmacie Martin",
+      "groupe_garde": 2,
+      "telephone": "+22625508459",
+      "adresse_description": "Av. de la Dignité, non loin radio SAVANE FM, Pissy",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5510688,
+          12.3281731
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_074",
+      "nom": "Pharmacie Meira",
+      "groupe_garde": 2,
+      "telephone": "+22625651246",
+      "adresse_description": "Nioko 2, non loin du marché, route de Ziniaré",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.46304,
+          12.4257167
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_075",
+      "nom": "Pharmacie Meteba",
+      "groupe_garde": 2,
+      "telephone": "+22625335333",
+      "adresse_description": "Ex sect 23, quartier Tanghin, 365 rue Jean-Paul II",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5376327,
+          12.4004904
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_076",
+      "nom": "Pharmacie Nayyira",
+      "groupe_garde": 2,
+      "telephone": "+22663784444",
+      "adresse_description": "Katre Yaar, après la gare de Taxis",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4738417,
+          12.3473174
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_077",
+      "nom": "Pharmacie Neima",
+      "groupe_garde": 2,
+      "telephone": "+22625655682",
+      "adresse_description": "Toukin Yaar, quartier Somgandé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4960004,
+          12.4119504
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_078",
+      "nom": "Pharmacie Nemadis",
+      "groupe_garde": 2,
+      "telephone": "+22670784962",
+      "adresse_description": "Rue Bogodogo, 500m du Rond point SANDOF vers SIAO",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4911107,
+          12.3564914
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_079",
+      "nom": "Pharmacie Progrès",
+      "groupe_garde": 2,
+      "telephone": "+22625430162",
+      "adresse_description": "Pissy, route de Bobo, face à UBIPHARM",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5692951,
+          12.3441594
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_080",
+      "nom": "Pharmacie Rakismanegré",
+      "groupe_garde": 2,
+      "telephone": "+22662505818",
+      "adresse_description": "Non loin Château d'eau de Tampouy, voie nouvelle mairie Arrdt 9",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5687944,
+          12.4182956
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_081",
+      "nom": "Pharmacie Sainte Véronique",
+      "groupe_garde": 2,
+      "telephone": "+22663260404",
+      "adresse_description": "En face du marché de Zagtouli, route CIMAT",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.6325783,
+          12.3277287
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_082",
+      "nom": "Pharmacie Sangoulé Lamizana",
+      "groupe_garde": 2,
+      "telephone": "+22625411300",
+      "adresse_description": "Av. Yennega, à côté de Marina Market, centre-ville",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5209239,
+          12.3649864
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_083",
+      "nom": "Pharmacie Schiffey",
+      "groupe_garde": 2,
+      "telephone": "+22625402742",
+      "adresse_description": "Non loin Blvd de la jeunesse, vers foyer Sapeurs Pompiers Camp Sangoulé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.568,
+          12.38
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_084",
+      "nom": "Pharmacie Sig-Noghin",
+      "groupe_garde": 2,
+      "telephone": "+22625350977",
+      "adresse_description": "Av. Naaba Ziiwendé, 150m du rond-point de Rimkièta",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5993509,
+          12.3903118
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_085",
+      "nom": "Pharmacie Sigri",
+      "groupe_garde": 2,
+      "telephone": "+22625412148",
+      "adresse_description": "2828 Av. du Conseil de l'Entente, Gounghin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5487705,
+          12.3558656
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_086",
+      "nom": "Pharmacie du Sud",
+      "groupe_garde": 2,
+      "telephone": "+22625376860",
+      "adresse_description": "Centre Commercial Ouaga 2000, à côté Hôtel Libya",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5267318,
+          12.3063322
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_087",
+      "nom": "Pharmacie Talba",
+      "groupe_garde": 2,
+      "telephone": "+22625362225",
+      "adresse_description": "Av. Charles De Gaulle, face au Scolosticat, Zogona",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4909898,
+          12.3762697
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_088",
+      "nom": "Pharmacie Tanko",
+      "groupe_garde": 2,
+      "telephone": "+22625651534",
+      "adresse_description": "Face au CMA Paul VI sur la route de Kamboinsé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5555946,
+          12.3992142
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_089",
+      "nom": "Pharmacie Univers",
+      "groupe_garde": 2,
+      "telephone": "+22625419965",
+      "adresse_description": "Voie principale Saaba, 500m de la préfecture de Saaba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.425461,
+          12.3828275
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_090",
+      "nom": "Pharmacie Viim",
+      "groupe_garde": 2,
+      "telephone": "+22601928888",
+      "adresse_description": "100 mètres du Centre Médical de Nagrin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5344247,
+          12.2875001
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_091",
+      "nom": "Pharmacie Wati",
+      "groupe_garde": 2,
+      "telephone": "+22625385292",
+      "adresse_description": "Cissin, 200m de l'École de Santé St Edvige, Samandin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5404714,
+          12.3443619
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_092",
+      "nom": "Pharmacie Yobi",
+      "groupe_garde": 2,
+      "telephone": "+22625311630",
+      "adresse_description": "200m de la Gendarmerie de Paspanga",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5119047,
+          12.3781304
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_093",
+      "nom": "Pharmacie Zidou",
+      "groupe_garde": 2,
+      "telephone": "+22661078860",
+      "adresse_description": "Balkuy, en face de l'immeuble Yelhi",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4764745,
+          12.3040171
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_094",
+      "nom": "Pharmacie Aïmèvo",
+      "groupe_garde": 3,
+      "telephone": "+22625393699",
+      "adresse_description": "Karpala, face Mairie Arrdt 11, env. 20m après Château ONEA",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.479868,
+          12.3390042
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_095",
+      "nom": "Pharmacie Arzouma",
+      "groupe_garde": 3,
+      "telephone": "+22625480153",
+      "adresse_description": "Quartier Pissy, 100m de la clinique du Plateau",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5746062,
+          12.3319857
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_096",
+      "nom": "Pharmacie Avé Maria",
+      "groupe_garde": 3,
+      "telephone": "+22625479888",
+      "adresse_description": "Karpala, non loin Station Oryx",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.469362,
+          12.3235046
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_097",
+      "nom": "Pharmacie Balkuy",
+      "groupe_garde": 3,
+      "telephone": "+22625375136",
+      "adresse_description": "Route de Pô, non loin rond-point des Droits Humains",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4822765,
+          12.3095647
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_098",
+      "nom": "Pharmacie Baraka",
+      "groupe_garde": 3,
+      "telephone": "+22625330272",
+      "adresse_description": "Côté Est de la Cours du Ouidi Naaba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5394097,
+          12.3784044
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_099",
+      "nom": "Pharmacie Belle Ville",
+      "groupe_garde": 3,
+      "telephone": "+22625408414",
+      "adresse_description": "Route de Komsilga / BRAFASO / 75e Anniversaire AD, Sandogo",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.557804,
+          12.307727
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_100",
+      "nom": "Pharmacie Carrefour",
+      "groupe_garde": 3,
+      "telephone": "+22625332310",
+      "adresse_description": "Av. Kadiogo, en face du rond-point du 02 Octobre et lycée Marien Gouabi",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5309476,
+          12.3677252
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_101",
+      "nom": "Pharmacie Charis",
+      "groupe_garde": 3,
+      "telephone": "+22625439091",
+      "adresse_description": "Cité relai de Zagtouli, route de Bobo, après complexe St Justin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.6151104,
+          12.3296215
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_102",
+      "nom": "Pharmacie Concorde",
+      "groupe_garde": 3,
+      "telephone": "+22625312949",
+      "adresse_description": "Av. Kwamé N'Krumah, non loin de Zabre Daaga",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5191037,
+          12.3672097
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_103",
+      "nom": "Pharmacie Coura",
+      "groupe_garde": 3,
+      "telephone": "+22625388390",
+      "adresse_description": "200m côté Ouest rond-point des Droits Humains",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5193038,
+          12.327362
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_104",
+      "nom": "Pharmacie Djabal (ex Mariama)",
+      "groupe_garde": 3,
+      "telephone": "+22625300576",
+      "adresse_description": "Kamsonghin sect 64, Av. Ouezzin Coulibaly, entre ZACA et Château Mogho Naaba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5231887,
+          12.3564056
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_105",
+      "nom": "Pharmacie Djimbia",
+      "groupe_garde": 3,
+      "telephone": "+22625357765",
+      "adresse_description": "400m après le rond-point du Rotary, Tanghin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5142602,
+          12.4014651
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_106",
+      "nom": "Pharmacie Dunia",
+      "groupe_garde": 3,
+      "telephone": "+22625362051",
+      "adresse_description": "Avenue des Arts, face au rond-point des Artistes, 1200 Logts",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4952633,
+          12.3592658
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_107",
+      "nom": "Pharmacie Ecoles",
+      "groupe_garde": 3,
+      "telephone": "+22625315232",
+      "adresse_description": "Rue des Écoles, Paspanga",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5162671,
+          12.3818559
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_108",
+      "nom": "Pharmacie Fraternité",
+      "groupe_garde": 3,
+      "telephone": "+22625364800",
+      "adresse_description": "100m de ENAREF, côté ECOBANK",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4791251,
+          12.3917917
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_109",
+      "nom": "Pharmacie Galiam",
+      "groupe_garde": 3,
+      "telephone": "+22625653165",
+      "adresse_description": "Tampouy, route de la mairie de Sig-Nonghin, non loin cité AZIMO",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5662313,
+          12.39969
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_110",
+      "nom": "Pharmacie Georgette",
+      "groupe_garde": 3,
+      "telephone": "+22625500528",
+      "adresse_description": "Bassinko, Route de Ouahigouya, à côté boulangerie Baraka",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.6337392,
+          12.4118157
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_111",
+      "nom": "Pharmacie Hamamickely",
+      "groupe_garde": 3,
+      "telephone": "+22673783299",
+      "adresse_description": "Quartier Somgandé, 300m du CSPS du Sect 19, Arrdt 4",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.505,
+          12.4
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_112",
+      "nom": "Pharmacie Hosanna",
+      "groupe_garde": 3,
+      "telephone": "+22625412648",
+      "adresse_description": "Route de Fada, en face du lycée Naba Yemdé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4380636,
+          12.4027967
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_113",
+      "nom": "Pharmacie Indépendance",
+      "groupe_garde": 3,
+      "telephone": "+22678836124",
+      "adresse_description": "370 Avenue Eli Sare, 500m de EAU Sahel, Ouaga 2000",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5248912,
+          12.311877
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_114",
+      "nom": "Pharmacie Jeunesse",
+      "groupe_garde": 3,
+      "telephone": "+22625343504",
+      "adresse_description": "Blvd de la Jeunesse, Hamdalaye, 200m de l'hippodrome",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5578295,
+          12.3719156
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_115",
+      "nom": "Pharmacie Kamboinsin",
+      "groupe_garde": 3,
+      "telephone": "+22654493021",
+      "adresse_description": "Face du Centre Émetteur de Kamboinsin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5494816,
+          12.4339155
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_116",
+      "nom": "Pharmacie Kamin",
+      "groupe_garde": 3,
+      "telephone": "+22625343028",
+      "adresse_description": "Sect 06 Gounghin, côté Est du marché de Gounghin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5456287,
+          12.3574294
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_117",
+      "nom": "Pharmacie Kilwin",
+      "groupe_garde": 3,
+      "telephone": "+22625508462",
+      "adresse_description": "Route de Ouahigouya, côté station Shell, face Tecin Yaar, Tampouy",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5804844,
+          12.3903226
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_118",
+      "nom": "Pharmacie La Famille",
+      "groupe_garde": 3,
+      "telephone": "+22625430685",
+      "adresse_description": "Quartier Pissy, Sect 12 Arrdt 3, 500m de Chic Hotel",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5643054,
+          12.3373385
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_119",
+      "nom": "Pharmacie La Sainte Trinité",
+      "groupe_garde": 3,
+      "telephone": "+22625412646",
+      "adresse_description": "Wemtenga, à côté Caisse Populaire Song-Taaba de Dagnoen",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.488452,
+          12.3684879
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_120",
+      "nom": "Pharmacie Naab Raga",
+      "groupe_garde": 3,
+      "telephone": "+22670143977",
+      "adresse_description": "Samandin, Avenue Oumarou Kanazoe, 100m marché Naab Raage",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5309124,
+          12.3504187
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_121",
+      "nom": "Pharmacie Naaba-Koom",
+      "groupe_garde": 3,
+      "telephone": "+22625357046",
+      "adresse_description": "200m de la Clinique Notre-Dame-de-la-Paix, Somgandé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5033346,
+          12.3992447
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_122",
+      "nom": "Pharmacie Nagrin",
+      "groupe_garde": 3,
+      "telephone": "+22625469048",
+      "adresse_description": "Route de Saponé, avant l'hôpital Balise Compaoré",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5344247,
+          12.2875001
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_123",
+      "nom": "Pharmacie Nazani",
+      "groupe_garde": 3,
+      "telephone": "+22625366510",
+      "adresse_description": "Ouagadougou",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.52,
+          12.37
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_124",
+      "nom": "Pharmacie Ninrwa",
+      "groupe_garde": 3,
+      "telephone": "+22625418038",
+      "adresse_description": "Route Benogo-Kossodo, Bogodogo, 400m du marché",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4565872,
+          12.4051573
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_125",
+      "nom": "Pharmacie Noom-Wendé",
+      "groupe_garde": 3,
+      "telephone": "+22601251717",
+      "adresse_description": "Rue Liwaga, après lycée Universalis en allant à Pissy",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.538019,
+          12.3187974
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_126",
+      "nom": "Pharmacie Poste",
+      "groupe_garde": 3,
+      "telephone": "+22625318424",
+      "adresse_description": "Ouagadougou centre",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.525,
+          12.365
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_127",
+      "nom": "Pharmacie de Pissy",
+      "groupe_garde": 3,
+      "telephone": "+22625414066",
+      "adresse_description": "Côté Est CMA de Pissy",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5643054,
+          12.3373385
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_128",
+      "nom": "Pharmacie Sacré Cœur",
+      "groupe_garde": 3,
+      "telephone": "+22625346060",
+      "adresse_description": "Avenue Simon Compaoré, 500m lycée Mixte de Gounghin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5461229,
+          12.3512296
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_129",
+      "nom": "Pharmacie Saint Julien",
+      "groupe_garde": 3,
+      "telephone": "+22625380610",
+      "adresse_description": "100m du rond-point Patte-d'oie, sur avenue Bassawarga",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5178971,
+          12.3176492
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_130",
+      "nom": "Pharmacie Saint Lazare",
+      "groupe_garde": 3,
+      "telephone": "+22625368648",
+      "adresse_description": "1200 Logts, à côté du Pont de Bons Yaare",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.499746,
+          12.3685629
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_131",
+      "nom": "Pharmacie Saint Michel",
+      "groupe_garde": 3,
+      "telephone": "+22679791824",
+      "adresse_description": "Rimkièta, non loin Pharmacie Barkwendé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5975377,
+          12.3752664
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_132",
+      "nom": "Pharmacie Santé-Vitalité",
+      "groupe_garde": 3,
+      "telephone": "+22668918704",
+      "adresse_description": "Rue Waraba, 500m après cité ASECNA en quittant Blvd France-Afrique",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5362187,
+          12.3262279
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_133",
+      "nom": "Pharmacie Savane",
+      "groupe_garde": 3,
+      "telephone": "+22670850161",
+      "adresse_description": "500m de l'École des Douanes, côté Nord",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5215853,
+          12.3745746
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_134",
+      "nom": "Pharmacie Taoko",
+      "groupe_garde": 3,
+      "telephone": "+22667576618",
+      "adresse_description": "Blvd Tansoba, 500m de l'échangeur de l'Est, Dassasgho",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4691718,
+          12.3873168
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_135",
+      "nom": "Pharmacie Téranga",
+      "groupe_garde": 3,
+      "telephone": "+22625360970",
+      "adresse_description": "13 Avenue Babanguida, Zogona",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4933921,
+          12.3818922
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_136",
+      "nom": "Pharmacie Ti-yéélé",
+      "groupe_garde": 3,
+      "telephone": "+22664364636",
+      "adresse_description": "Rue 28.284, secteur 43, non loin lycée Ste Collette",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.475,
+          12.34
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_137",
+      "nom": "Pharmacie Wend-Denda",
+      "groupe_garde": 3,
+      "telephone": "+22671509492",
+      "adresse_description": "Sect 9, Ouidi, Avenue Yatenga, entre station Total Larlé et ECOBANK Ouidi",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5440224,
+          12.3769408
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_138",
+      "nom": "Pharmacie Yennenga",
+      "groupe_garde": 3,
+      "telephone": "+22678836244",
+      "adresse_description": "Blvd Tansoba, face à la mairie de BOGODOGO, Sanyiri",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4882137,
+          12.3511485
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_139",
+      "nom": "Pharmacie Zone I",
+      "groupe_garde": 3,
+      "telephone": "+22663532670",
+      "adresse_description": "200m du marché de la Zone 1",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4698935,
+          12.366879
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_140",
+      "nom": "Pharmacie Zoungrana",
+      "groupe_garde": 3,
+      "telephone": "+22625409875",
+      "adresse_description": "Sect 17, Tanghin, rue 23/125, à côté boulangerie Wend Konta",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5294884,
+          12.3979596
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_141",
+      "nom": "Pharmacie 1200 Logements",
+      "groupe_garde": 4,
+      "telephone": "+22625360252",
+      "adresse_description": "Av. Babanguida, face à l'Hôpital Saint Camille",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4952105,
+          12.3666089
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_142",
+      "nom": "Pharmacie Adama",
+      "groupe_garde": 4,
+      "telephone": "+22662337777",
+      "adresse_description": "En face du Marché de Pissy, non loin Caisse Populaire",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5682221,
+          12.3356056
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_143",
+      "nom": "Pharmacie Afiya",
+      "groupe_garde": 4,
+      "telephone": "+22666117365",
+      "adresse_description": "Zone 1, 300m lycée Badenya, face au non loti",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4686317,
+          12.3554267
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_144",
+      "nom": "Pharmacie Amitié Miyougou",
+      "groupe_garde": 4,
+      "telephone": "+22625385236",
+      "adresse_description": "Blvd de la circulation, sect 25 Cissin, 200m marché Paagla yiri",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5352294,
+          12.3345884
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_145",
+      "nom": "Pharmacie Angèle",
+      "groupe_garde": 4,
+      "telephone": "+22663005730",
+      "adresse_description": "Tampouy, côté Sud Centre Médical Paul VI, face monument des Martyrs",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5629467,
+          12.3898845
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_146",
+      "nom": "Pharmacie Bethania",
+      "groupe_garde": 4,
+      "telephone": "+22625313141",
+      "adresse_description": "Av. Oumarou Kanazoe, côté Est CBC, Bilbalogho",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5336946,
+          12.3640405
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_147",
+      "nom": "Pharmacie Choukroullah",
+      "groupe_garde": 4,
+      "telephone": "+22625409376",
+      "adresse_description": "300m du Centre Médical de Nagrin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5381734,
+          12.286599
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_148",
+      "nom": "Pharmacie Circulaire Sède",
+      "groupe_garde": 4,
+      "telephone": "+22678836382",
+      "adresse_description": "Ex Sect 15, face station TOTAL Ouaga-inter, Patte d'oie",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5162308,
+          12.3325457
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_149",
+      "nom": "Pharmacie de l'Hippodrome",
+      "groupe_garde": 4,
+      "telephone": "+22625340232",
+      "adresse_description": "116 Blvd Tensoba Bugum, côté Est hippodrome de Nonsin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5575485,
+          12.3756732
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_150",
+      "nom": "Pharmacie de l'Alliance",
+      "groupe_garde": 4,
+      "telephone": "+22666063539",
+      "adresse_description": "Rimkièta, 50m du Lycée Général Kadiogo III",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.6028525,
+          12.3852251
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_151",
+      "nom": "Pharmacie Diawara",
+      "groupe_garde": 4,
+      "telephone": "+22625306168",
+      "adresse_description": "Rue du grand marché, Centre ville côté LONAB",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5242441,
+          12.3659111
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_152",
+      "nom": "Pharmacie El Shaddaï",
+      "groupe_garde": 4,
+      "telephone": "+22625410002",
+      "adresse_description": "Benogo, 100m du Pont Ana na yélé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4634325,
+          12.4145175
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_153",
+      "nom": "Pharmacie Espoir",
+      "groupe_garde": 4,
+      "telephone": "+22625315412",
+      "adresse_description": "Larlé, face à la Maison des Jeunes",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5457844,
+          12.3725662
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_154",
+      "nom": "Pharmacie Gare",
+      "groupe_garde": 4,
+      "telephone": "+22625316206",
+      "adresse_description": "103 rue des Douanes, côté Nord UBA Siège",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5215853,
+          12.3745746
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_155",
+      "nom": "Pharmacie Gemme",
+      "groupe_garde": 4,
+      "telephone": "+22662705050",
+      "adresse_description": "Cité AZIMMO Tampouy, en face lycée Privé Pang Ya Wendé",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5662313,
+          12.39969
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_156",
+      "nom": "Pharmacie Hamid",
+      "groupe_garde": 4,
+      "telephone": "+22679613172",
+      "adresse_description": "RN1 en face SONAPOST de Zagtouli",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.6325783,
+          12.3277287
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_157",
+      "nom": "Pharmacie de l'Hôpital",
+      "groupe_garde": 4,
+      "telephone": "+22625306641",
+      "adresse_description": "À côté de l'Hôpital Yalgado Ouedraogo",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5065921,
+          12.3821996
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_158",
+      "nom": "Pharmacie Jean Paul II",
+      "groupe_garde": 4,
+      "telephone": "+22625418154",
+      "adresse_description": "Blvd T. Kand-Lalse, face Arb-Yaar, Tanghin sect 17",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5376327,
+          12.4004904
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_159",
+      "nom": "Pharmacie Kadiogo",
+      "groupe_garde": 4,
+      "telephone": "+22625318788",
+      "adresse_description": "1207 Avenue Kwamé N'Krumah, immeuble CNSS, face Coris Bank",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5188351,
+          12.3662085
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_160",
+      "nom": "Pharmacie Kawsar",
+      "groupe_garde": 4,
+      "telephone": "+22673207787",
+      "adresse_description": "Karpala, 600m de la division fiscale (impôts)",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4926434,
+          12.3321873
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_161",
+      "nom": "Pharmacie Kouma",
+      "groupe_garde": 4,
+      "telephone": "+22625385742",
+      "adresse_description": "Blvd France-Afrique Ouaga 2000, 100m de Ouaga FM",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5289372,
+          12.3134406
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_162",
+      "nom": "Pharmacie La Croix",
+      "groupe_garde": 4,
+      "telephone": "+22625341264",
+      "adresse_description": "Gounghin, près échangeur de l'Ouest, face Jardin Challenge",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5436542,
+          12.3616428
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_163",
+      "nom": "Pharmacie Lallé",
+      "groupe_garde": 4,
+      "telephone": "+22679070622",
+      "adresse_description": "Av Pierre Claver Badembie Niezien, 50m feu tricolore, Kouritenga",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5520794,
+          12.3227051
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_164",
+      "nom": "Pharmacie Le Rocher",
+      "groupe_garde": 4,
+      "telephone": "+22670143932",
+      "adresse_description": "Rue de Saponé, Patte-d'oie, 1km mosquée Kanazoe",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5178971,
+          12.3176492
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_165",
+      "nom": "Pharmacie Les Grâces",
+      "groupe_garde": 4,
+      "telephone": "+22660808077",
+      "adresse_description": "Av. de la Concorde Nationale, secteur 17 Tanghin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5137114,
+          12.4093566
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_166",
+      "nom": "Pharmacie Louis Pasteur",
+      "groupe_garde": 4,
+      "telephone": "+22625335867",
+      "adresse_description": "Av. Dapoya, 400m de l'Église Catholique",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5279204,
+          12.3808796
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_167",
+      "nom": "Pharmacie Maignon",
+      "groupe_garde": 4,
+      "telephone": "+22625474118",
+      "adresse_description": "Av. Bassawarga, Kamsonghin, face CM de Samandin",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5264447,
+          12.3502567
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_168",
+      "nom": "Pharmacie Miséricorde",
+      "groupe_garde": 4,
+      "telephone": "+22670328258",
+      "adresse_description": "Dassasgho, côté Nord Église de Karambiri à 300m",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4633678,
+          12.3867301
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_169",
+      "nom": "Pharmacie du Musée",
+      "groupe_garde": 4,
+      "telephone": "+22625366841",
+      "adresse_description": "Blvd Tansoba, côté Est mur Musée National",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4691085,
+          12.3796076
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_170",
+      "nom": "Pharmacie Natilgé",
+      "groupe_garde": 4,
+      "telephone": "+22625372800",
+      "adresse_description": "Blvd Tansoaba Waonre, en face feu tricolore de l'IDS",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4833119,
+          12.3585129
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_171",
+      "nom": "Pharmacie Ouédraogo Rémi",
+      "groupe_garde": 4,
+      "telephone": "+22625371652",
+      "adresse_description": "Av. des Tansoba KIEMA, immeuble résidence Alice, face SONABEL ZAD",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4990333,
+          12.3351005
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_172",
+      "nom": "Pharmacie Pierre Tapsoba",
+      "groupe_garde": 4,
+      "telephone": "+22625508148",
+      "adresse_description": "Saaba, 100m de la Station OTAM",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4433463,
+          12.3976775
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_173",
+      "nom": "Pharmacie Principale",
+      "groupe_garde": 4,
+      "telephone": "+22625375415",
+      "adresse_description": "Av. Pascal Zagré, Ouaga 2000, côté feux tricolores Présidence, non loin TV BF1",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5039114,
+          12.3061395
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_174",
+      "nom": "Pharmacie La Providence",
+      "groupe_garde": 4,
+      "telephone": "+22625411963",
+      "adresse_description": "Larlé, 200m de la Gare STAF",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5396338,
+          12.3738789
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_175",
+      "nom": "Pharmacie Saaba",
+      "groupe_garde": 4,
+      "telephone": "+22625408699",
+      "adresse_description": "En face du lycée Notre Dame des Victoires, Saaba",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.43,
+          12.372
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_176",
+      "nom": "Pharmacie Sahel",
+      "groupe_garde": 4,
+      "telephone": "+22625318195",
+      "adresse_description": "Av. Président Sangoulé Lamizana, Koulouba, alignement siège ORANGE",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5209239,
+          12.3649864
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_177",
+      "nom": "Pharmacie Sainte Odile",
+      "groupe_garde": 4,
+      "telephone": "+22651697777",
+      "adresse_description": "Côté Est Cave Simporé, Karpala, en allant vers Rayongo",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4633659,
+          12.332715
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_178",
+      "nom": "Pharmacie Sira",
+      "groupe_garde": 4,
+      "telephone": "+22625431778",
+      "adresse_description": "Route de Bobo, 100m Mairie de Boulmiougou",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5808747,
+          12.3416432
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_179",
+      "nom": "Pharmacie Somgandé",
+      "groupe_garde": 4,
+      "telephone": "+22670143925",
+      "adresse_description": "Cité SOCOGIB Somgandé, 200m boulangerie Wend Konta",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4896501,
+          12.4063012
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_180",
+      "nom": "Pharmacie Sotisse",
+      "groupe_garde": 4,
+      "telephone": "+22625364148",
+      "adresse_description": "Quartier Wayalguin, à côté Clinique de l'Est",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4685939,
+          12.3970825
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_181",
+      "nom": "Pharmacie Unité",
+      "groupe_garde": 4,
+      "telephone": "+22625402757",
+      "adresse_description": "Gounghin, près échangeur de l'Ouest, face Jardin de la Challenge",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5436542,
+          12.3616428
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_182",
+      "nom": "Pharmacie Vénégré",
+      "groupe_garde": 4,
+      "telephone": "+22625430987",
+      "adresse_description": "Arrdt 6, non loin Clinique EL Fateh Suka",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5581465,
+          12.3350482
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_183",
+      "nom": "Pharmacie Vidal Bafa",
+      "groupe_garde": 4,
+      "telephone": "+22625315288",
+      "adresse_description": "Avenue Oumarou Kanazoé, Sect 7, près école de l'Onatel",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5523604,
+          12.4202636
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_184",
+      "nom": "Pharmacie Vièl",
+      "groupe_garde": 4,
+      "telephone": "+22625459825",
+      "adresse_description": "Route de Kamboincé, porte des sœurs après CMA PAUL VI",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5510588,
+          12.4245505
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_185",
+      "nom": "Pharmacie Wayalghin",
+      "groupe_garde": 4,
+      "telephone": "+22625395208",
+      "adresse_description": "En face mur du camp CRS, vers ANTBA (venant MACO, après ENAREF)",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4787948,
+          12.3972311
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_186",
+      "nom": "Pharmacie Wend Kuuni",
+      "groupe_garde": 4,
+      "telephone": "+22625362015",
+      "adresse_description": "Blvd Charles De Gaulle, non loin mosquée de l'AEEMB, Wemtenga",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.4875525,
+          12.3755034
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "oua_187",
+      "nom": "Pharmacie Wend Yam",
+      "groupe_garde": 4,
+      "telephone": "+22625483047",
+      "adresse_description": "Route de Ouahigouya, fin des deux voies, 500m marché de bétail",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.58,
+          12.41
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "oua_188",
+      "nom": "Hôpital Pédiatrique Charles de Gaulle (Pharmacie 24h)",
+      "groupe_garde": null,
+      "ouverture_24h": true,
+      "telephone": "+22625304801",
+      "adresse_description": "Blvd Charles De Gaulle, Hôpital Pédiatrique",
+      "ville": "Ouagadougou",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -1.5065921,
+          12.3821996
+        ]
+      },
+      "precision_gps": "estimée"
+    }
+  ]
+}

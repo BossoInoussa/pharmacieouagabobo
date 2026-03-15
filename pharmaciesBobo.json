@@ -1,0 +1,735 @@
+{
+  "ville": "Bobo-Dioulasso",
+  "pays": "Burkina Faso",
+  "description": "Liste officielle des pharmacies de Bobo-Dioulasso avec groupes de garde",
+  "sources": [
+    "ListePharmacieOuage.xlsx",
+    "Google Maps Places API"
+  ],
+  "note_groupes": "4 groupes tournants. Semaine de garde : samedi 12h00 → samedi suivant 12h00.",
+  "derniere_mise_a_jour": "2026-03-10",
+  "note_coordonnees": "Coordonnées obtenues via Google Maps Places API. precision_gps=haute : coordonnée directe Google Maps. estimée : centroïde de quartier.",
+  "pharmacies": [
+    {
+      "id": "bob_001",
+      "nom": "Pharmacie Aoudi",
+      "groupe_garde": 1,
+      "telephone": "+22620981898",
+      "adresse_description": "Avenue Louveau, Bolomakoté",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2923933,
+          11.1632556
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_002",
+      "nom": "Pharmacie Bethel",
+      "groupe_garde": 1,
+      "telephone": "+22620973759",
+      "adresse_description": "Rue André K. Kambou, Sonsoribougou",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3211953,
+          11.1841240
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_003",
+      "nom": "Pharmacie Espérance",
+      "groupe_garde": 1,
+      "telephone": "+22620974717",
+      "adresse_description": "Rue Bernard Sib Sié, Ouezzin Ville",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2703436,
+          11.1890479
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_004",
+      "nom": "Pharmacie Goulmou",
+      "groupe_garde": 1,
+      "telephone": "+22625436305",
+      "adresse_description": "Bobo-Dioulasso",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2980000,
+          11.1780000
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "bob_005",
+      "nom": "Pharmacie Harmonie",
+      "groupe_garde": 1,
+      "telephone": "+22679167198",
+      "adresse_description": "Rue 20.38 Porte 911, Lafiabougou",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3200352,
+          11.1582768
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_006",
+      "nom": "Pharmacie Jolean",
+      "groupe_garde": 1,
+      "telephone": "+22620983798",
+      "adresse_description": "Yeguéré",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3150008,
+          11.2013123
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_007",
+      "nom": "Pharmacie du Levant",
+      "groupe_garde": 1,
+      "telephone": "+22620970333",
+      "adresse_description": "Sikasso Sira",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3029144,
+          11.1727902
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_008",
+      "nom": "Pharmacie Moderne",
+      "groupe_garde": 1,
+      "telephone": "+22620970250",
+      "adresse_description": "Rue 6.07, Bolomakoté",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2924125,
+          11.1632169
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_009",
+      "nom": "Pharmacie Sala",
+      "groupe_garde": 1,
+      "telephone": "+22620971889",
+      "adresse_description": "Nord de Bobo-Dioulasso",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3029608,
+          11.2025740
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_010",
+      "nom": "Pharmacie Sibiri",
+      "groupe_garde": 1,
+      "telephone": "+22620977902",
+      "adresse_description": "Secteur 25",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2509640,
+          11.1690657
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_011",
+      "nom": "Pharmacie Wobi",
+      "groupe_garde": 1,
+      "telephone": "+22620973697",
+      "adresse_description": "Bobo-Dioulasso centre",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2982366,
+          11.1852608
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_012",
+      "nom": "Pharmacie Yamba",
+      "groupe_garde": 1,
+      "telephone": "+22620977778",
+      "adresse_description": "Rue 2.18",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3006388,
+          11.1956826
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_013",
+      "nom": "Pharmacie de l'Aéroport",
+      "groupe_garde": 2,
+      "telephone": "+22620975014",
+      "adresse_description": "Route N8, Petit Paris",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3121302,
+          11.1663262
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_014",
+      "nom": "Pharmacie du Boulevard",
+      "groupe_garde": 2,
+      "telephone": "+22620952093",
+      "adresse_description": "Rue Baba Dangadou, Tounouma",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2852724,
+          11.1836462
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_015",
+      "nom": "Pharmacie Christ-Roi",
+      "groupe_garde": 2,
+      "telephone": "+22620955853",
+      "adresse_description": "Secteur 24",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2485419,
+          11.1767107
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_016",
+      "nom": "Pharmacie Dafra",
+      "groupe_garde": 2,
+      "telephone": "+22620977993",
+      "adresse_description": "Ouezzin Ville",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2748000,
+          11.1860000
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "bob_017",
+      "nom": "Pharmacie Djena",
+      "groupe_garde": 2,
+      "telephone": "+22620983798",
+      "adresse_description": "Bobo-Dioulasso",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2900000,
+          11.1850000
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "bob_018",
+      "nom": "Pharmacie du Houet",
+      "groupe_garde": 2,
+      "telephone": "+22620971080",
+      "adresse_description": "Avenue Guillaume Ouedraogo",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3014885,
+          11.1752687
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_019",
+      "nom": "Pharmacie Lafia",
+      "groupe_garde": 2,
+      "telephone": "+22673664927",
+      "adresse_description": "Bobo-Dioulasso",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3051542,
+          11.1649219
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_020",
+      "nom": "Pharmacie Lucien",
+      "groupe_garde": 2,
+      "telephone": "+22620975152",
+      "adresse_description": "Rue Ibrahim Cire Ba, Sarfalao",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2698943,
+          11.1600330
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_021",
+      "nom": "Pharmacie Nazindi-Gouba",
+      "groupe_garde": 2,
+      "telephone": "+22620975757",
+      "adresse_description": "Yeguéré",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2923039,
+          11.1961008
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_022",
+      "nom": "Pharmacie Nazounki",
+      "groupe_garde": 2,
+      "telephone": "+22620973100",
+      "adresse_description": "Yeguéré",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3263280,
+          11.1900321
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_023",
+      "nom": "Pharmacie Sarfalao",
+      "groupe_garde": 2,
+      "telephone": "+22620970135",
+      "adresse_description": "Boulevard Chalone en Champagne, Sarfalao",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2811932,
+          11.1597291
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_024",
+      "nom": "Pharmacie Sifoma",
+      "groupe_garde": 2,
+      "telephone": "+22620971955",
+      "adresse_description": "Rue de la Namibie, Accart-Ville",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3075432,
+          11.1825376
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_025",
+      "nom": "Pharmacie Becy",
+      "groupe_garde": 3,
+      "telephone": "+22620955841",
+      "adresse_description": "Belleville",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3516189,
+          11.1804691
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_026",
+      "nom": "Pharmacie de l'Entente",
+      "groupe_garde": 3,
+      "telephone": "+22620971916",
+      "adresse_description": "Koko",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2859692,
+          11.1727728
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_027",
+      "nom": "Pharmacie Hayatt",
+      "groupe_garde": 3,
+      "telephone": "+22620970000",
+      "adresse_description": "Belleville",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3354943,
+          11.1776117
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_028",
+      "nom": "Pharmacie Hereso",
+      "groupe_garde": 3,
+      "telephone": "+22620970995",
+      "adresse_description": "Route N1, Sarfalao",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2676272,
+          11.1714071
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_029",
+      "nom": "Pharmacie Medine",
+      "groupe_garde": 3,
+      "telephone": "+22620970910",
+      "adresse_description": "Avenue de la République",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2988174,
+          11.1791861
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_030",
+      "nom": "Pharmacie Soudia",
+      "groupe_garde": 3,
+      "telephone": "+22620971449",
+      "adresse_description": "Avenue de l'Unité",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3043405,
+          11.1884434
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_031",
+      "nom": "Pharmacie Souligné",
+      "groupe_garde": 3,
+      "telephone": "+22620970816",
+      "adresse_description": "Rue Pepin Malherbe",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2999360,
+          11.1738370
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_032",
+      "nom": "Pharmacie St Antoine",
+      "groupe_garde": 3,
+      "telephone": "+22620951301",
+      "adresse_description": "Route N10, Nord de Bobo",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2834111,
+          11.2230336
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_033",
+      "nom": "Pharmacie St Raphaël",
+      "groupe_garde": 3,
+      "telephone": "+22620986391",
+      "adresse_description": "Zone Industrielle",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3151430,
+          11.1562127
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_034",
+      "nom": "Pharmacie Vitalis",
+      "groupe_garde": 3,
+      "telephone": "+22670125486",
+      "adresse_description": "Rue Ouedraogo Noaga, Yeguéré",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3144393,
+          11.1912536
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_035",
+      "nom": "Pharmacie Audrey",
+      "groupe_garde": 4,
+      "telephone": "+22620954469",
+      "adresse_description": "Route N1, Est de Bobo",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2420361,
+          11.1668039
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_036",
+      "nom": "Pharmacie Bien-Être",
+      "groupe_garde": 4,
+      "telephone": "+22620972079",
+      "adresse_description": "Rue Djibril J. Vinama",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3164092,
+          11.1772757
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_037",
+      "nom": "Pharmacie Grâce",
+      "groupe_garde": 4,
+      "telephone": "+22620974825",
+      "adresse_description": "Bobo-Dioulasso",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2950000,
+          11.1820000
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "bob_038",
+      "nom": "Pharmacie Hadim",
+      "groupe_garde": 4,
+      "telephone": "+22620984200",
+      "adresse_description": "Rue Bernard Sib Sié",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2726993,
+          11.1778618
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_039",
+      "nom": "Pharmacie Hôpital",
+      "groupe_garde": 4,
+      "telephone": "+22620983747",
+      "adresse_description": "Près du CHR Souro Sanou",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2731404,
+          11.1527326
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_040",
+      "nom": "Pharmacie Jigiya",
+      "groupe_garde": 4,
+      "telephone": "+22620971204",
+      "adresse_description": "Avenue de la Révolution",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3121352,
+          11.1877403
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_041",
+      "nom": "Pharmacie Miyougou",
+      "groupe_garde": 4,
+      "telephone": "+22620974751",
+      "adresse_description": "Bobo-Dioulasso",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3050000,
+          11.1790000
+        ]
+      },
+      "precision_gps": "estimée"
+    },
+    {
+      "id": "bob_042",
+      "nom": "Pharmacie Relwende",
+      "groupe_garde": 4,
+      "telephone": "+22620951702",
+      "adresse_description": "Avenue de la République",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2986777,
+          11.1790739
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_043",
+      "nom": "Pharmacie Siyara",
+      "groupe_garde": 4,
+      "telephone": "+22620971373",
+      "adresse_description": "Avenue du gouverneur William Ponty",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.3016652,
+          11.1766694
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_044",
+      "nom": "Pharmacie Solidarité",
+      "groupe_garde": 4,
+      "telephone": "+22620662251",
+      "adresse_description": "Rue Nazi Boni",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2957817,
+          11.1866079
+        ]
+      },
+      "precision_gps": "haute"
+    },
+    {
+      "id": "bob_045",
+      "nom": "CHR Souro Sanou (Pharmacie 24h)",
+      "groupe_garde": null,
+      "ouverture_24h": true,
+      "telephone": "+22620973000",
+      "adresse_description": "Secteur 6, Avenue Cheik Zayed",
+      "ville": "Bobo-Dioulasso",
+      "geojson": {
+        "type": "Point",
+        "coordinates": [
+          -4.2960000,
+          11.1760000
+        ]
+      },
+      "precision_gps": "estimée"
+    }
+  ]
+}

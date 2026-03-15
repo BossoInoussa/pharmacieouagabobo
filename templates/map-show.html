@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PharmaBF — Résultats</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js" crossorigin=""></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --or:#C85A00; --or-l:#E8780A; --or-b:#F7A74B; --or-p:#FFF3E8;
+      --gn:#1A6B3C; --gn-l:#27AE60; --gn-p:#EDFAF3;
+      --gy:#888; --gy-p:#F5F5F5;
+      --cream:#FDF6EE; --dark:#1C1007; --mid:#5C4325; --lt:#A07850;
+      --bd:rgba(200,90,0,.13); --rad:12px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);overflow:hidden}
+    .layout{display:grid;grid-template-rows:56px 1fr;height:100vh}
+
+    /* Topbar */
+    .topbar{background:linear-gradient(135deg,var(--or) 0%,var(--or-l) 58%,var(--gn) 100%);display:flex;align-items:center;padding:0 1rem;gap:.75rem;box-shadow:0 3px 16px rgba(0,0,0,.22);z-index:1000;overflow:hidden}
+    .tb-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;letter-spacing:-.02em;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+    .tb-brand em{color:var(--or-b);font-style:normal}
+    .tb-search{flex:1;max-width:300px;position:relative}
+    .tb-search input{width:100%;padding:.42rem .75rem .42rem 2.1rem;border-radius:50px;border:none;background:rgba(255,255,255,.22);color:#fff;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:500;outline:none;transition:background .2s}
+    .tb-search input::placeholder{color:rgba(255,255,255,.7)}
+    .tb-search input:focus{background:rgba(255,255,255,.32)}
+    .tb-search .si{position:absolute;left:.6rem;top:50%;transform:translateY(-50%);pointer-events:none}
+    .tb-pills{display:flex;gap:.35rem;margin-left:auto}
+    .tb-pill{display:flex;align-items:center;gap:.28rem;font-size:.73rem;font-weight:600;color:#fff;background:rgba(255,255,255,.15);border-radius:50px;padding:.2rem .6rem;white-space:nowrap}
+    .tb-pill.g{background:rgba(255,200,50,.22)}.tb-pill.v{background:rgba(93,198,135,.22)}
+    .tb-back{background:rgba(255,255,255,.18);border:none;color:#fff;border-radius:50px;padding:.28rem .8rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;transition:background .2s;white-space:nowrap}
+    .tb-back:hover{background:rgba(255,255,255,.3)}
+
+    /* Corps */
+    .body{display:grid;grid-template-columns:340px 1fr;overflow:hidden}
+    @media(max-width:680px){.body{grid-template-columns:1fr;grid-template-rows:50% 50%}}
+
+    /* Panneau */
+    .panel{background:#fff;border-right:1.5px solid var(--bd);display:flex;flex-direction:column;overflow:hidden}
+    .panel-tabs{display:flex;border-bottom:1.5px solid var(--bd);flex-shrink:0}
+    .p-tab{flex:1;padding:.55rem .4rem;font-family:'Syne',sans-serif;font-weight:700;font-size:.76rem;text-align:center;cursor:pointer;color:var(--mid);border:none;background:transparent;border-bottom:3px solid transparent;margin-bottom:-1.5px;display:flex;align-items:center;justify-content:center;gap:.3rem;transition:color .2s,border-color .2s}
+    .p-tab.on{color:var(--or);border-bottom-color:var(--or)}
+
+    .panel-search{padding:.6rem .7rem;border-bottom:1.5px solid var(--bd);flex-shrink:0;position:relative}
+    .panel-search input{width:100%;padding:.42rem .7rem .42rem 2rem;border-radius:50px;border:1.5px solid var(--bd);background:var(--cream);font-family:'Nunito',sans-serif;font-size:.8rem;color:var(--dark);outline:none;transition:border-color .2s}
+    .panel-search input:focus{border-color:var(--or-l)}
+    .panel-search .si{position:absolute;left:1.2rem;top:50%;transform:translateY(-50%);pointer-events:none}
+
+    .filter-row{padding:.45rem .7rem;border-bottom:1.5px solid var(--bd);display:flex;gap:.3rem;flex-wrap:wrap;flex-shrink:0}
+    .f-btn{border:1.5px solid var(--bd);background:transparent;border-radius:50px;padding:.2rem .6rem;font-family:'Nunito',sans-serif;font-weight:600;font-size:.73rem;cursor:pointer;color:var(--mid);display:inline-flex;align-items:center;gap:.28rem;transition:all .18s}
+    .f-btn.on{background:var(--or);border-color:var(--or);color:#fff}
+    .f-btn:hover:not(.on){border-color:var(--or);color:var(--or)}
+
+    .card-scroll{overflow-y:auto;flex:1;padding:.45rem}
+    .ph-card{background:var(--cream);border-radius:var(--rad);padding:.75rem .85rem;margin-bottom:.45rem;border:1.5px solid var(--bd);cursor:pointer;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s}
+    .ph-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px}
+    .ph-card.garde::before{background:var(--or)}.ph-card.open::before{background:var(--gn-l)}.ph-card.closed::before{background:#ccc}
+    .ph-card:hover{transform:translateX(3px);box-shadow:0 5px 20px rgba(200,90,0,.11);border-color:var(--or-b)}
+    .ph-card.hl{border-color:var(--or);background:var(--or-p);box-shadow:0 5px 20px rgba(200,90,0,.16)}
+    .ct{display:flex;justify-content:space-between;align-items:flex-start;gap:.4rem;margin-bottom:.3rem}
+    .cn{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--dark);line-height:1.3}
+    .cd{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;color:var(--or);background:var(--or-p);border-radius:50px;padding:.1rem .48rem;white-space:nowrap}
+    .badge{display:inline-flex;align-items:center;gap:.22rem;font-size:.68rem;font-weight:700;border-radius:50px;padding:.12rem .48rem;margin-right:.2rem}
+    .bg-g{background:var(--or-p);color:var(--or)}.bg-v{background:var(--gn-p);color:var(--gn)}.bg-c{background:var(--gy-p);color:var(--gy)}
+    .ca{font-size:.76rem;color:var(--mid);margin-top:.22rem;display:flex;align-items:flex-start;gap:.28rem;line-height:1.4}
+    .cp{font-size:.74rem;color:var(--gn);font-weight:600;margin-top:.18rem;display:flex;align-items:center;gap:.28rem}
+    .card-actions{display:flex;gap:.35rem;margin-top:.5rem}
+    .ca-btn{flex:1;padding:.35rem .4rem;border-radius:8px;border:1.5px solid var(--bd);background:transparent;font-family:'Nunito',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.25rem;transition:all .18s;color:var(--mid)}
+    .ca-btn.route{border-color:var(--or);color:var(--or)}.ca-btn.route:hover{background:var(--or);color:#fff}
+    .ca-btn.voice{border-color:var(--gn);color:var(--gn)}.ca-btn.voice:hover{background:var(--gn);color:#fff}
+
+    /* Panneau itinéraire */
+    .route-panel{flex:1;overflow-y:auto;padding:.75rem;display:flex;flex-direction:column;gap:.6rem}
+    .route-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 1rem;color:var(--lt);gap:.75rem}
+    .route-empty p{font-size:.83rem;line-height:1.6}
+    .route-hdr{background:var(--or-p);border-radius:var(--rad);padding:.8rem 1rem;border:1.5px solid rgba(200,90,0,.2)}
+    .route-hdr h3{font-family:'Syne',sans-serif;font-weight:800;font-size:.92rem;color:var(--or);margin-bottom:.4rem}
+    .route-meta{display:flex;gap:.6rem;flex-wrap:wrap}
+    .rm{display:flex;align-items:center;gap:.28rem;font-size:.78rem;font-weight:600;color:var(--mid)}
+
+    /* Barre de progression vocal */
+    .voice-bar{background:linear-gradient(135deg,var(--or-p),var(--gn-p));border-radius:var(--rad);padding:.75rem 1rem;border:1.5px solid rgba(200,90,0,.18)}
+    .voice-bar-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+    .voice-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;color:var(--or)}
+    .voice-status{font-size:.72rem;color:var(--mid)}
+    .voice-controls{display:flex;gap:.35rem}
+    .v-btn{padding:.32rem .65rem;border-radius:50px;border:1.5px solid var(--or);background:transparent;color:var(--or);font-family:'Nunito',sans-serif;font-weight:700;font-size:.73rem;cursor:pointer;display:flex;align-items:center;gap:.25rem;transition:all .18s}
+    .v-btn.on{background:var(--or);color:#fff}
+    .v-btn:hover:not(.on){background:var(--or);color:#fff}
+    .v-btn.stop{border-color:#C0392B;color:#C0392B}.v-btn.stop:hover{background:#C0392B;color:#fff}
+
+    /* Step courant (vocal) */
+    .current-step{background:#fff;border-radius:var(--rad);padding:.7rem .85rem;border:2px solid var(--or);box-shadow:0 3px 14px rgba(200,90,0,.14)}
+    .cs-num{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--or);color:#fff;font-size:.72rem;font-weight:700;align-items:center;justify-content:center;margin-right:.4rem;flex-shrink:0}
+    .cs-text{font-size:.82rem;color:var(--dark);line-height:1.45;display:flex;align-items:flex-start}
+    .cs-dist{font-size:.72rem;color:var(--lt);margin-top:.22rem}
+
+    .step-list h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.76rem;color:var(--mid);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.04em}
+    .step-item{display:flex;align-items:flex-start;gap:.5rem;padding:.45rem .55rem;border-radius:8px;background:var(--cream);margin-bottom:.3rem;border:1px solid var(--bd);cursor:pointer;transition:background .15s}
+    .step-item:hover{background:var(--or-p)}
+    .step-item.cs-active{background:var(--or-p);border-color:var(--or)}
+    .sn{width:20px;height:20px;border-radius:50%;background:var(--lt);color:#fff;font-size:.66rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .sn.done{background:var(--gn-l)}.sn.active{background:var(--or)}
+    .st{font-size:.76rem;color:var(--dark);line-height:1.4}
+    .sd{font-size:.7rem;color:var(--lt);margin-top:.12rem}
+
+    .btn-clear{width:100%;padding:.42rem;border-radius:8px;border:1.5px solid var(--bd);background:transparent;color:var(--mid);font-family:'Nunito',sans-serif;font-weight:600;font-size:.73rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.28rem;transition:all .18s}
+    .btn-clear:hover{border-color:#C0392B;color:#C0392B}
+
+    /* Panneau vocal annonce proximité */
+    .proximity-bar{background:linear-gradient(135deg,#1A6B3C,#27AE60);border-radius:var(--rad);padding:.65rem .9rem;display:flex;align-items:center;gap:.6rem;color:#fff;flex-shrink:0}
+    .pb-text{flex:1;font-size:.78rem;font-weight:600;line-height:1.4}
+    .pb-btn{background:rgba(255,255,255,.2);border:none;border-radius:50px;padding:.25rem .65rem;color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;white-space:nowrap;transition:background .18s}
+    .pb-btn:hover{background:rgba(255,255,255,.35)}
+
+    /* Carte custom controls */
+    .map-wrap{position:relative;overflow:hidden}
+    #map{height:100%;width:100%}
+    .map-fab{position:absolute;bottom:80px;right:10px;z-index:500;display:flex;flex-direction:column;gap:6px}
+    .fab{width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:box-shadow .18s,transform .18s}
+    .fab:hover{box-shadow:0 4px 18px rgba(200,90,0,.28);transform:scale(1.09)}
+    .fab.active{background:var(--or);border-color:var(--or)}
+
+    /* Indicateur de proximité sur la carte */
+    .prox-toast{position:absolute;bottom:130px;left:50%;transform:translateX(-50%);z-index:600;background:var(--gn);color:#fff;border-radius:50px;padding:.45rem 1.1rem;font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;display:none;align-items:center;gap:.5rem;box-shadow:0 4px 20px rgba(0,0,0,.22);white-space:nowrap;animation:slideup .35s ease}
+    @keyframes slideup{from{opacity:0;transform:translateX(-50%) translateY(12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+    /* Popup */
+    .leaflet-div-icon{background:none;border:none}
+    .leaflet-routing-container{display:none!important}
+    .pop{font-family:'Nunito',sans-serif;font-size:.84rem;min-width:210px}
+    .pop-n{font-family:'Syne',sans-serif;font-weight:700;font-size:.94rem;color:#1C1007;margin-bottom:.32rem}
+    .pop-s{display:flex;align-items:center;gap:.28rem;font-weight:700;margin-bottom:.18rem}
+    .pop-s.g{color:var(--or)}.pop-s.v{color:var(--gn)}.pop-s.c{color:#C0392B}
+    .pop-r{font-size:.76rem;color:#5C4325;margin:.16rem 0;display:flex;align-items:flex-start;gap:.28rem}
+    .pop-d{font-size:.76rem;color:var(--or);font-weight:700;margin-top:.28rem;display:flex;align-items:center;gap:.28rem}
+    .pop-btns{display:flex;gap:.35rem;margin-top:.5rem}
+    .pop-btn{flex:1;padding:.35rem;border-radius:7px;border:1.5px solid var(--or);background:var(--or);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:.73rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.25rem}
+    .pop-btn.voice{background:var(--gn);border-color:var(--gn)}
+  </style>
+</head>
+<body>
+
+<!-- SVG Symbols -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+  <defs>
+    <symbol id="i-cross"   viewBox="0 0 20 20"><rect x="8" y="1" width="4" height="18" rx="2"/><rect x="1" y="8" width="18" height="4" rx="2"/></symbol>
+    <symbol id="i-garde"   viewBox="0 0 20 20"><rect x="7.5" y="2" width="4" height="16" rx="2"/><rect x="2" y="7.5" width="16" height="4" rx="2"/><circle cx="17" cy="3" r="3.5"/><path d="M17 1v4M15 3h4" stroke="white" stroke-width="1.2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-lock"    viewBox="0 0 20 20"><rect x="3" y="9" width="14" height="10" rx="3"/><path d="M6.5 9V7A3.5 3.5 0 0 1 13.5 7v2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="10" cy="14" r="1.5" fill="white"/></symbol>
+    <symbol id="i-pin"     viewBox="0 0 20 20"><path d="M10 1C7.2 1 5 3.2 5 6c0 4.5 5 13 5 13s5-8.5 5-13c0-2.8-2.2-5-5-5z"/><circle cx="10" cy="6" r="2.2" fill="white"/></symbol>
+    <symbol id="i-phone"   viewBox="0 0 20 20"><path d="M4 2h4l1.5 4-2 2a10 10 0 0 0 4.5 4.5l2-2L18 12v4c0 1.5-5 4-10-1S2.5 3.5 4 2z"/></symbol>
+    <symbol id="i-search"  viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-route"   viewBox="0 0 20 20"><circle cx="4" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16" cy="15" r="2.5" fill="currentColor"/><path d="M4 7.5C4 11 8 11 8 14.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M8 14.5C8 16 11 16 13.5 15" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-locate"  viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 1v3.5M10 15.5v3.5M1 10h3.5M15.5 10h3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-list"    viewBox="0 0 20 20"><rect x="7" y="4" width="11" height="2" rx="1"/><rect x="7" y="9" width="11" height="2" rx="1"/><rect x="7" y="14" width="11" height="2" rx="1"/><circle cx="3" cy="5" r="1.5"/><circle cx="3" cy="10" r="1.5"/><circle cx="3" cy="15" r="1.5"/></symbol>
+    <symbol id="i-nav"     viewBox="0 0 20 20"><path d="M2 10L10 2l8 8-6 1-1 6z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></symbol>
+    <symbol id="i-clock"   viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-ruler"   viewBox="0 0 20 20"><rect x="1" y="7" width="18" height="6" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M5 7v2.5M9 7v4M13 7v2.5M17 7v2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-close"   viewBox="0 0 20 20"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-vol-on"  viewBox="0 0 20 20"><path d="M4 7H2v6h2l5 4V3L4 7z" fill="currentColor"/><path d="M13 7a4 4 0 0 1 0 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M15.5 4.5a7.5 7.5 0 0 1 0 11" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-vol-off" viewBox="0 0 20 20"><path d="M4 7H2v6h2l5 4V3L4 7z" fill="currentColor"/><path d="M14 8l4 4M18 8l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-play"    viewBox="0 0 20 20"><path d="M6 4l12 6-12 6z" fill="currentColor"/></symbol>
+    <symbol id="i-pause"   viewBox="0 0 20 20"><rect x="5" y="3" width="4" height="14" rx="1.5" fill="currentColor"/><rect x="11" y="3" width="4" height="14" rx="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-skip"    viewBox="0 0 20 20"><path d="M4 4l10 6-10 6z" fill="currentColor"/><rect x="15" y="4" width="2.5" height="12" rx="1" fill="currentColor"/></symbol>
+    <symbol id="i-flag"    viewBox="0 0 20 20"><path d="M4 2v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M4 2l12 4-12 5" fill="currentColor"/></symbol>
+    <symbol id="i-turn-r"  viewBox="0 0 20 20"><path d="M5 16V9a4 4 0 0 1 4-4h6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M12 2l3 3-3 3" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-turn-l"  viewBox="0 0 20 20"><path d="M15 16V9a4 4 0 0 0-4-4H5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M8 2L5 5l3 3" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-straight" viewBox="0 0 20 20"><path d="M10 16V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M7 7l3-3 3 3" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fit"     viewBox="0 0 20 20"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="layout">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="tb-brand">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="white"><use href="#i-cross"/></svg>
+      Pharma<em>BF</em>
+    </div>
+    <div class="tb-search">
+      <svg class="si" width="13" height="13" viewBox="0 0 20 20" fill="rgba(255,255,255,.75)"><use href="#i-search"/></svg>
+      <input type="text" id="tbSearch" placeholder="Rechercher une pharmacie..." autocomplete="off" />
+    </div>
+    <div class="tb-pills">
+      <div class="tb-pill g">
+        <svg width="11" height="11" viewBox="0 0 20 20" fill="white"><use href="#i-garde"/></svg>
+        <span id="nGarde">—</span> garde
+      </div>
+      <div class="tb-pill v">
+        <svg width="11" height="11" viewBox="0 0 20 20" fill="white"><use href="#i-cross"/></svg>
+        <span id="nOpen">—</span> ouv.
+      </div>
+      <div class="tb-pill">
+        <svg width="11" height="11" viewBox="0 0 20 20" fill="rgba(255,255,255,.7)"><use href="#i-lock"/></svg>
+        <span id="nClosed">—</span> ferm.
+      </div>
+      <!-- Bouton vocal global -->
+      <div class="fab" id="globalVoiceBtn" title="Activer/désactiver le guidage vocal" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.35);cursor:pointer;display:flex;align-items:center;justify-content:center" onclick="toggleGlobalVoice()">
+        <svg id="gvIco" width="15" height="15" viewBox="0 0 20 20" fill="white"><use href="#i-vol-on"/></svg>
+      </div>
+    </div>
+    <a href="/" class="tb-back">
+      <svg width="11" height="11" viewBox="0 0 20 20" fill="white"><path d="M14 3L6 10l8 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Retour
+    </a>
+  </div>
+
+  <!-- Corps -->
+  <div class="body">
+
+    <!-- Panneau gauche -->
+    <div class="panel">
+      <div class="panel-tabs">
+        <button class="p-tab on" id="tab-list"  onclick="switchTab('list')">
+          <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><use href="#i-list"/></svg>Liste
+        </button>
+        <button class="p-tab" id="tab-route" onclick="switchTab('route')">
+          <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><use href="#i-nav"/></svg>Itinéraire
+        </button>
+      </div>
+
+      <!-- Liste -->
+      <div id="pane-list" style="display:flex;flex-direction:column;overflow:hidden;flex:1">
+        <div class="panel-search">
+          <svg class="si" width="13" height="13" viewBox="0 0 20 20" fill="var(--lt)"><use href="#i-search"/></svg>
+          <input type="text" id="panelSearch" placeholder="Nom, quartier, adresse..." autocomplete="off" />
+        </div>
+        <div class="filter-row" id="filterRow">
+          <button class="f-btn on" onclick="applyFilter(this,'all')">Toutes</button>
+          <button class="f-btn" onclick="applyFilter(this,'garde')">
+            <svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"><use href="#i-garde"/></svg>Garde
+          </button>
+          <button class="f-btn" onclick="applyFilter(this,'open')">
+            <svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"><use href="#i-cross"/></svg>Ouvertes
+          </button>
+          <button class="f-btn" onclick="applyFilter(this,'closed')">
+            <svg width="10" height="10" viewBox="0 0 20 20" fill="currentColor"><use href="#i-lock"/></svg>Fermées
+          </button>
+        </div>
+        <div class="card-scroll" id="cardList"></div>
+      </div>
+
+      <!-- Itinéraire -->
+      <div id="pane-route" style="display:none;flex:1;overflow:hidden;flex-direction:column">
+        <div class="route-panel" id="routePanel">
+          <div class="route-empty">
+            <svg width="46" height="46" viewBox="0 0 20 20" stroke="var(--lt)" fill="none" stroke-width="1.2"><use href="#i-route"/></svg>
+            <p>Sélectionnez une pharmacie puis cliquez sur <strong>Calculer l'itinéraire</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carte -->
+    <div class="map-wrap">
+      <div id="map"></div>
+
+      <!-- Toast proximité -->
+      <div class="prox-toast" id="proxToast">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="white"><use href="#i-pin"/></svg>
+        <span id="proxText"></span>
+      </div>
+
+      <!-- Boutons flottants -->
+      <div class="map-fab">
+        <div class="fab" id="fabCenter" title="Ma position">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="var(--or)"><use href="#i-locate"/></svg>
+        </div>
+        <div class="fab" id="fabFit" title="Tout afficher">
+          <svg width="17" height="17" viewBox="0 0 20 20" stroke="var(--or)" fill="none"><use href="#i-fit"/></svg>
+        </div>
+        <div class="fab" id="fabVoiceAnnounce" title="Annoncer la pharmacie la plus proche">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="var(--gn)"><use href="#i-vol-on"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ═══ Données Flask ════════════════════════════════════════════ */
+const USER_LAT    = Number("{{ latitude }}");
+const USER_LON    = Number("{{ longitude }}");
+const ALL_LOCS    = {{ locations | tojson }};
+const GARDE_GROUP = {{ garde_group }};
+const AUTOFILTER  = "{{ autofilter }}";
+
+/* ═══ Stats ════════════════════════════════════════════════════ */
+document.getElementById('nGarde').textContent  = ALL_LOCS.filter(l => l.deGarde).length;
+document.getElementById('nOpen').textContent   = ALL_LOCS.filter(l => l.ouvert && !l.deGarde).length;
+document.getElementById('nClosed').textContent = ALL_LOCS.filter(l => !l.ouvert).length;
+
+/* ═══ Helpers ══════════════════════════════════════════════════ */
+const fmtDist = d => d >= 1000 ? (d/1000).toFixed(1)+' km' : d+' m';
+const fmtTime = s => {
+  const h = Math.floor(s/3600), m = Math.round((s%3600)/60);
+  return h ? `${h}h ${m}min` : `${m} min`;
+};
+const sc = l => l.deGarde ? 'garde' : l.ouvert ? 'open' : 'closed';
+
+function svg(id, sz, col, stroke) {
+  return stroke
+    ? `<svg width="${sz}" height="${sz}" viewBox="0 0 20 20" fill="none" stroke="${col}" stroke-width="1.5"><use href="#${id}"/></svg>`
+    : `<svg width="${sz}" height="${sz}" viewBox="0 0 20 20" fill="${col}"><use href="#${id}"/></svg>`;
+}
+
+/* ═══ Synthèse vocale (Web Speech API) ════════════════════════ */
+let voiceEnabled = true;
+let synth        = window.speechSynthesis;
+let currentUtter = null;
+
+function speak(text, priority) {
+  if (!voiceEnabled || !synth) return;
+  if (priority) synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang  = 'fr-FR';
+  u.rate  = 0.92;
+  u.pitch = 1.0;
+  // Choisir voix française si dispo
+  const voices = synth.getVoices();
+  const fr = voices.find(v => v.lang.startsWith('fr')) || voices[0];
+  if (fr) u.voice = fr;
+  currentUtter = u;
+  synth.speak(u);
+  return u;
+}
+
+function stopSpeech() {
+  if (synth) synth.cancel();
+  currentUtter = null;
+}
+
+function toggleGlobalVoice() {
+  voiceEnabled = !voiceEnabled;
+  const ico = document.getElementById('gvIco');
+  ico.innerHTML = `<use href="#${voiceEnabled ? 'i-vol-on' : 'i-vol-off'}"/>`;
+  document.getElementById('globalVoiceBtn').style.background = voiceEnabled
+    ? 'rgba(255,255,255,.18)' : 'rgba(192,57,43,.55)';
+  if (!voiceEnabled) stopSpeech();
+  else speak('Guidage vocal activé.', true);
+}
+
+/* Traduction des types OSRM → texte FR */
+const OSRM_FR = {
+  'Head':         dir => `Continuez vers le ${dir || 'nord'}`,
+  'SlightRight':  () => 'Continuez légèrement à droite',
+  'Right':        () => 'Tournez à droite',
+  'SharpRight':   () => 'Tournez fortement à droite',
+  'UTurn':        () => 'Faites demi-tour',
+  'SharpLeft':    () => 'Tournez fortement à gauche',
+  'Left':         () => 'Tournez à gauche',
+  'SlightLeft':   () => 'Continuez légèrement à gauche',
+  'Roundabout':   exit => `Prenez le rond-point${exit ? `, sortie ${exit}` : ''}`,
+  'WaypointReached': () => 'Vous avez atteint un point de passage',
+  'DestinationReached': () => "Vous êtes arrivé à destination",
+};
+
+function instrToFR(step) {
+  if (!step) return '';
+  const text = step.text || step.instruction || '';
+  // Si OSRM déjà renvoie du français, on l'utilise directement
+  if (/gauche|droite|continuez|tournez|rond-point|destination|arrivé/i.test(text)) return text;
+  // Sinon on traduit via le type
+  const type = step.type;
+  if (type && OSRM_FR[type]) {
+    const fn = OSRM_FR[type];
+    const arg = step.exit || step.direction || '';
+    return fn(arg);
+  }
+  return text;
+}
+
+/* ═══ SVG marqueurs ═══════════════════════════════════════════ */
+function mkSVG(loc, big) {
+  const r  = big ? 20 : 16, sz = r*2;
+  const bg = loc.deGarde ? '#C85A00' : loc.ouvert ? '#27AE60' : '#888';
+  const iSz = Math.round(r*.88), iOff = Math.round((sz-iSz)/2);
+  const inner = {
+    garde:  `<rect x="7.5" y="2" width="4" height="16" rx="2" fill="white"/><rect x="2" y="7.5" width="16" height="4" rx="2" fill="white"/><circle cx="17" cy="3" r="3.5" fill="white"/><path d="M17 1v4M15 3h4" stroke="${bg}" stroke-width="1.2" stroke-linecap="round" fill="none"/>`,
+    open:   `<rect x="8" y="1" width="4" height="18" rx="2" fill="white"/><rect x="1" y="8" width="18" height="4" rx="2" fill="white"/>`,
+    closed: `<rect x="3" y="9" width="14" height="10" rx="3" fill="white"/><path d="M6.5 9V7A3.5 3.5 0 0 1 13.5 7v2" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="10" cy="14" r="1.5" fill="${bg}"/>`,
+  }[sc(loc)];
+  return `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="${r}" cy="${r}" r="${r-1}" fill="white" stroke="${bg}" stroke-width="2.5"/>
+    <circle cx="${r}" cy="${r}" r="${Math.round(r*.68)}" fill="${bg}"/>
+    <svg x="${iOff}" y="${iOff}" width="${iSz}" height="${iSz}" viewBox="0 0 20 20">${inner}</svg>
+  </svg>`;
+}
+
+function mkUserSVG() {
+  return `<svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="22" cy="22" r="20" fill="white" stroke="#1A6B3C" stroke-width="3"/>
+    <circle cx="22" cy="22" r="13" fill="#1A6B3C"/>
+    <path d="M22 10C18.7 10 16 12.7 16 16c0 5 6 16 6 16s6-11 6-16c0-3.3-2.7-6-6-6z" fill="white"/>
+    <circle cx="22" cy="15.5" r="2.8" fill="#1A6B3C"/>
+  </svg>`;
+}
+
+/* ═══ Popup ════════════════════════════════════════════════════ */
+function mkPopup(loc, idx) {
+  const s   = sc(loc);
+  const col = {garde:'#C85A00',open:'#1A6B3C',closed:'#C0392B'}[s];
+  const stT = {garde:'De garde — 24h/24',open:'Ouvert',closed:'Fermé'}[s];
+  const stI = {garde:'i-garde',open:'i-cross',closed:'i-lock'}[s];
+  return `<div class="pop">
+    <div class="pop-n">${loc.nom}</div>
+    <div class="pop-s ${s}">${svg(stI,13,col)} ${stT}</div>
+    <div class="pop-r">${svg('i-pin',11,'#A07850')} <span>${loc.adresse||loc.details||''}</span></div>
+    ${loc.telephone?`<div class="pop-r">${svg('i-phone',11,'#1A6B3C')} <a href="tel:${loc.telephone}" style="color:#1A6B3C">${loc.telephone}</a></div>`:''}
+    <div class="pop-d">${svg('i-ruler',11,'#C85A00',true)} ${fmtDist(loc.distance)} de vous — Gr. ${loc.groupe||'N/A'}</div>
+    <div class="pop-btns">
+      <button class="pop-btn" onclick="startRoute(${idx})">
+        ${svg('i-nav',12,'white')} Itinéraire
+      </button>
+      <button class="pop-btn voice" onclick="announcePharmacy(${idx})">
+        ${svg('i-vol-on',12,'white')} Annoncer
+      </button>
+    </div>
+  </div>`;
+}
+
+/* ═══ Carte Leaflet ════════════════════════════════════════════ */
+const map = L.map('map', { zoomControl: false }).setView([USER_LAT, USER_LON], 14);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+L.control.zoom({ position:'topleft' }).addTo(map);
+
+L.marker([USER_LAT, USER_LON], {
+  icon: L.divIcon({ html:mkUserSVG(), iconSize:[44,44], iconAnchor:[22,22], popupAnchor:[0,-24], className:'' })
+}).addTo(map).bindPopup('<div class="pop"><div class="pop-n">Votre position</div></div>');
+
+/* ═══ Construction des cartes + marqueurs ══════════════════════ */
+const markers = [], cards = [];
+const listEl  = document.getElementById('cardList');
+
+ALL_LOCS.forEach((loc, idx) => {
+  const mkIcon = big => L.divIcon({
+    html:mkSVG(loc,big), iconSize:big?[40,40]:[32,32],
+    iconAnchor:big?[20,20]:[16,16], popupAnchor:[0,big?-22:-18], className:''
+  });
+  const marker = L.marker([loc.lat,loc.lon],{icon:mkIcon(false)})
+    .addTo(map).bindPopup(mkPopup(loc,idx),{maxWidth:290});
+  marker.on('click',()=>hlCard(idx));
+  markers.push({m:marker, mkIcon});
+
+  const s       = sc(loc);
+  const bCls    = {garde:'bg-g',open:'bg-v',closed:'bg-c'}[s];
+  const bTxt    = {garde:'De garde',open:'Ouvert',closed:'Fermé'}[s];
+  const bCol    = {garde:'#C85A00',open:'#27AE60',closed:'#888'}[s];
+  const bIco    = {garde:'i-garde',open:'i-cross',closed:'i-lock'}[s];
+  const grpTxt  = loc.groupe ? ` — Gr. ${loc.groupe}` : '';
+
+  const card = document.createElement('div');
+  card.className   = `ph-card ${s}`;
+  card.dataset.status = s;
+  card.dataset.name   = loc.nom.toLowerCase();
+  card.dataset.addr   = (loc.adresse||loc.details||'').toLowerCase();
+  card.innerHTML = `
+    <div class="ct">
+      <div class="cn">${loc.nom}</div>
+      <div class="cd">${fmtDist(loc.distance)}</div>
+    </div>
+    <div>
+      <span class="badge ${bCls}">${svg(bIco,10,bCol)} ${bTxt}</span>
+      ${loc.groupe?`<span class="badge bg-c">Gr. ${loc.groupe}</span>`:''}
+    </div>
+    <div class="ca">${svg('i-pin',10,'#A07850')} <span>${loc.adresse||loc.details||''}</span></div>
+    ${loc.telephone?`<div class="cp">${svg('i-phone',10,'#1A6B3C')} ${loc.telephone}</div>`:''}
+    <div class="card-actions">
+      <button class="ca-btn route" onclick="event.stopPropagation();startRoute(${idx})">
+        ${svg('i-nav',11,'currentColor')} Itinéraire
+      </button>
+      <button class="ca-btn voice" onclick="event.stopPropagation();announcePharmacy(${idx})">
+        ${svg('i-vol-on',11,'currentColor')} Annoncer
+      </button>
+    </div>`;
+  card.addEventListener('click',()=>{
+    map.setView([loc.lat,loc.lon],16,{animate:true});
+    markers[idx].m.openPopup();
+    hlCard(idx);
+  });
+  listEl.appendChild(card);
+  cards.push(card);
+});
+
+/* ═══ Highlight ════════════════════════════════════════════════ */
+let lastHl = -1;
+function hlCard(idx) {
+  if(lastHl>=0){ cards[lastHl].classList.remove('hl'); markers[lastHl].m.setIcon(markers[lastHl].mkIcon(false)); }
+  cards[idx].classList.add('hl');
+  markers[idx].m.setIcon(markers[idx].mkIcon(true));
+  cards[idx].scrollIntoView({behavior:'smooth',block:'nearest'});
+  lastHl = idx;
+}
+
+/* ═══ Filtre + Recherche ═══════════════════════════════════════ */
+let curFilter = 'all', curSearch = '';
+
+function applyFilter(btn, f) {
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); curFilter = f; updateVisible();
+}
+
+function updateVisible() {
+  const q = curSearch.trim().toLowerCase();
+  cards.forEach((card,idx) => {
+    const ok = (curFilter==='all'||card.dataset.status===curFilter)
+            && (!q || card.dataset.name.includes(q) || card.dataset.addr.includes(q));
+    card.style.display = ok ? '' : 'none';
+    ok ? markers[idx].m.addTo(map) : map.removeLayer(markers[idx].m);
+  });
+}
+
+document.getElementById('panelSearch').addEventListener('input', e=>{ curSearch=e.target.value; document.getElementById('tbSearch').value=curSearch; updateVisible(); });
+document.getElementById('tbSearch').addEventListener('input',   e=>{ curSearch=e.target.value; document.getElementById('panelSearch').value=curSearch; updateVisible(); });
+
+/* ═══ Annonce vocale d'une pharmacie ═══════════════════════════ */
+function announcePharmacy(idx) {
+  const loc = ALL_LOCS[idx];
+  const s   = sc(loc);
+  const statut = {garde:'de garde, ouverte vingt-quatre heures sur vingt-quatre',open:'ouverte',closed:'actuellement fermée'}[s];
+  const dist   = loc.distance >= 1000
+    ? `à ${(loc.distance/1000).toFixed(1)} kilomètres`
+    : `à ${loc.distance} mètres`;
+
+  const grpInfo = loc.groupe
+    ? ` Elle appartient au groupe ${loc.groupe}.`
+    : '';
+
+  let txt = `${loc.nom}, ${statut}, ${dist} de votre position.${grpInfo}`;
+  if (loc.telephone) txt += ` Téléphone : ${loc.telephone.replace(/\+226/,'zéro deux deux six ')}.`;
+  if (loc.adresse)   txt += ` Adresse : ${loc.adresse}.`;
+
+  speak(txt, true);
+}
+
+/* ═══ Routage ══════════════════════════════════════════════════ */
+let routeCtrl       = null;
+let routeSteps      = [];
+let routeStepIdx    = 0;
+let voiceNavPlaying = false;
+let voiceNavTimer   = null;
+let activeRouteIdx  = -1;
+let destLoc         = null;
+
+function startRoute(idx) {
+  const loc = ALL_LOCS[idx];
+  destLoc   = loc;
+  if (routeCtrl) { map.removeControl(routeCtrl); routeCtrl = null; }
+  stopVoiceNav();
+
+  routeCtrl = L.Routing.control({
+    waypoints: [L.latLng(USER_LAT, USER_LON), L.latLng(loc.lat, loc.lon)],
+    router: L.Routing.osrmv1({
+      serviceUrl: 'https://router.project-osrm.org/route/v1',
+      profile: 'driving',
+      language: 'fr',
+    }),
+    lineOptions: {
+      styles:[{color:'#C85A00',weight:5,opacity:.88}],
+      extendToWaypoints:true, missingRouteTolerance:0
+    },
+    createMarker: () => null,
+    addWaypoints: false,
+    draggableWaypoints: false,
+    fitSelectedRoutes: true,
+    show: false,
+  }).addTo(map);
+
+  activeRouteIdx = idx;
+  hlCard(idx);
+  switchTab('route');
+
+  routeCtrl.on('routesfound', e => {
+    const route = e.routes[0];
+    routeSteps  = (route.instructions || []).map(instrToFR);
+    buildRoutePanel(loc, route.summary.totalDistance, route.summary.totalTime);
+
+    // Annonce de départ
+    speak(`Itinéraire calculé vers ${loc.nom}. Distance : ${fmtDist(Math.round(route.summary.totalDistance))}. Durée estimée : ${fmtTime(route.summary.totalTime)}. Démarrage du guidage.`, true);
+    setTimeout(() => {
+      if (voiceEnabled && routeSteps.length) {
+        routeStepIdx = 0;
+        playNextStep();
+      }
+    }, 5000);
+  });
+
+  routeCtrl.on('routingerror', () => buildRouteFallback(loc));
+}
+
+function playNextStep(manual) {
+  if (routeStepIdx >= routeSteps.length) return;
+  const stepText = routeSteps[routeStepIdx];
+  speak(stepText, true);
+  highlightStep(routeStepIdx);
+
+  if (!manual) {
+    // Avancer automatiquement après lecture estimée
+    const delay = Math.max(4000, stepText.length * 65);
+    voiceNavTimer = setTimeout(() => {
+      routeStepIdx++;
+      if (routeStepIdx < routeSteps.length) playNextStep();
+      else {
+        speak(`Vous êtes arrivé à destination. ${destLoc ? destLoc.nom : ''}.`, true);
+        voiceNavPlaying = false;
+        updateNavBtn();
+      }
+    }, delay);
+  }
+}
+
+function highlightStep(idx) {
+  document.querySelectorAll('.step-item').forEach((el,i) => {
+    el.classList.toggle('cs-active', i===idx);
+    el.querySelector('.sn').className = `sn ${i<idx?'done':i===idx?'active':''}`;
+  });
+  const el = document.querySelectorAll('.step-item')[idx];
+  if (el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function stopVoiceNav() {
+  clearTimeout(voiceNavTimer);
+  voiceNavPlaying = false;
+  stopSpeech();
+  updateNavBtn();
+}
+
+function updateNavBtn() {
+  const btn = document.getElementById('voicePlayBtn');
+  if (!btn) return;
+  if (voiceNavPlaying) {
+    btn.innerHTML = `${svg('i-pause',12,'currentColor')} Pause`;
+    btn.classList.add('on');
+  } else {
+    btn.innerHTML = `${svg('i-play',12,'currentColor')} Lancer le guidage`;
+    btn.classList.remove('on');
+  }
+}
+
+/* ═══ Panneau itinéraire ═══════════════════════════════════════ */
+function buildRoutePanel(loc, dist, time) {
+  const s   = sc(loc);
+  const col = {garde:'#C85A00',open:'#1A6B3C',closed:'#888'}[s];
+  const stT = {garde:'De garde',open:'Ouvert',closed:'Fermé'}[s];
+
+  const stepsHtml = routeSteps.map((txt, i) => {
+    const ico = i===routeSteps.length-1 ? 'i-flag'
+              : txt.toLowerCase().includes('droite') ? 'i-turn-r'
+              : txt.toLowerCase().includes('gauche') ? 'i-turn-l' : 'i-straight';
+    return `<div class="step-item" onclick="routeStepIdx=${i};playNextStep(true)">
+      <div class="sn" data-i="${i}">${i+1}</div>
+      <div>
+        <div class="st">${svg(ico,12,'#5C4325')} ${txt}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('routePanel').innerHTML = `
+    <div class="route-hdr">
+      <h3>${loc.nom}</h3>
+      <div class="route-meta">
+        <div class="rm">${svg('i-ruler',13,'#C85A00',true)} <strong>${fmtDist(Math.round(dist))}</strong></div>
+        <div class="rm">${svg('i-clock',13,'#5C4325',true)} <strong>${fmtTime(time)}</strong></div>
+        <div class="rm" style="color:${col};font-weight:700">${stT}</div>
+      </div>
+    </div>
+
+    ${loc.telephone?`<div style="background:var(--gn-p);border-radius:var(--rad);padding:.6rem .85rem;border:1.5px solid rgba(26,107,60,.18);display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:600;color:var(--gn)">
+      ${svg('i-phone',13,'#1A6B3C')} <a href="tel:${loc.telephone}" style="color:var(--gn)">${loc.telephone}</a></div>`:''}
+
+    <div class="voice-bar">
+      <div class="voice-bar-top">
+        <div class="voice-title">${svg('i-vol-on',14,'#C85A00')} Guidage vocal</div>
+        <div class="voice-status" id="voiceStatusTxt">Prêt</div>
+      </div>
+      <div class="voice-controls">
+        <button class="v-btn" id="voicePlayBtn" onclick="toggleVoiceNav()">
+          ${svg('i-play',12,'currentColor')} Lancer le guidage
+        </button>
+        <button class="v-btn" id="voiceSkipBtn" onclick="voiceSkip()">
+          ${svg('i-skip',12,'currentColor')} Suivant
+        </button>
+        <button class="v-btn stop" onclick="stopVoiceNav()">
+          ${svg('i-vol-off',12,'currentColor')} Stop
+        </button>
+      </div>
+    </div>
+
+    <div class="step-list">
+      <h4>Étapes</h4>
+      ${stepsHtml}
+    </div>
+
+    <button class="btn-clear" onclick="clearRoute()">
+      ${svg('i-close',12,'currentColor')} Supprimer l'itinéraire
+    </button>`;
+}
+
+function toggleVoiceNav() {
+  voiceNavPlaying = !voiceNavPlaying;
+  if (voiceNavPlaying) {
+    routeStepIdx = routeStepIdx || 0;
+    playNextStep();
+  } else {
+    clearTimeout(voiceNavTimer);
+    stopSpeech();
+  }
+  updateNavBtn();
+}
+
+function voiceSkip() {
+  clearTimeout(voiceNavTimer);
+  routeStepIdx++;
+  if (routeStepIdx < routeSteps.length) playNextStep(false);
+  else speak('Vous êtes arrivé à destination.', true);
+}
+
+function buildRouteFallback(loc) {
+  document.getElementById('routePanel').innerHTML = `
+    <div class="route-hdr">
+      <h3>${loc.nom}</h3>
+      <div class="route-meta"><div class="rm">${svg('i-ruler',13,'#C85A00',true)} ${fmtDist(loc.distance)} à vol d'oiseau</div></div>
+    </div>
+    <div style="padding:.75rem;background:var(--or-p);border-radius:var(--rad);font-size:.8rem;color:var(--mid)">
+      Calcul d'itinéraire indisponible (OSRM hors ligne). La ligne droite est affichée sur la carte.
+    </div>
+    <button class="btn-clear" onclick="clearRoute()">${svg('i-close',12,'currentColor')} Supprimer</button>`;
+}
+
+function clearRoute() {
+  if (routeCtrl) { map.removeControl(routeCtrl); routeCtrl = null; }
+  stopVoiceNav();
+  routeSteps = []; routeStepIdx = 0; activeRouteIdx = -1; destLoc = null;
+  document.getElementById('routePanel').innerHTML = `
+    <div class="route-empty">
+      ${svg('i-route',46,'var(--lt)',true)}
+      <p>Sélectionnez une pharmacie puis cliquez sur <strong>Calculer l'itinéraire</strong>.</p>
+    </div>`;
+}
+
+/* ═══ Onglets ══════════════════════════════════════════════════ */
+function switchTab(t) {
+  ['list','route'].forEach(id => {
+    document.getElementById(`tab-${id}`).classList.toggle('on', id===t);
+    document.getElementById(`pane-${id}`).style.display = id===t ? 'flex' : 'none';
+  });
+}
+
+/* ═══ Boutons flottants ════════════════════════════════════════ */
+document.getElementById('fabCenter').addEventListener('click', () => {
+  map.setView([USER_LAT, USER_LON], 15, {animate:true});
+});
+
+document.getElementById('fabFit').addEventListener('click', () => {
+  const pts = ALL_LOCS.filter((_,i)=>cards[i]&&cards[i].style.display!=='none').map(l=>[l.lat,l.lon]);
+  if (pts.length) map.fitBounds(L.latLngBounds([[USER_LAT,USER_LON],...pts]),{padding:[40,40],animate:true});
+});
+
+// Bouton annonce vocale de la pharmacie la plus proche ouverte
+document.getElementById('fabVoiceAnnounce').addEventListener('click', () => {
+  const nearest = ALL_LOCS.find(l => l.ouvert);
+  if (!nearest) { speak('Aucune pharmacie ouverte trouvée à proximité.', true); return; }
+  const idx = ALL_LOCS.indexOf(nearest);
+  announcePharmacy(idx);
+  showProxToast(nearest);
+  map.setView([nearest.lat, nearest.lon], 15, {animate:true});
+  markers[idx].m.openPopup();
+  hlCard(idx);
+});
+
+/* Toast de proximité */
+function showProxToast(loc) {
+  const t = document.getElementById('proxToast');
+  document.getElementById('proxText').textContent =
+    `${loc.nom} — ${fmtDist(loc.distance)}`;
+  t.style.display = 'flex';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.style.display='none'; }, 6000);
+}
+
+/* ═══ Détection de proximité automatique ══════════════════════ */
+const PROX_THRESHOLD_M = 300; // moins de 300m → annoncer
+let lastProxAnnounce   = 0;
+
+function checkProximity(userLat, userLon) {
+  const now = Date.now();
+  if (now - lastProxAnnounce < 60000) return; // max 1 annonce / minute
+  ALL_LOCS.forEach(loc => {
+    if (!loc.ouvert) return;
+    const R = 6371000;
+    const dp = (loc.lat - userLat) * Math.PI/180;
+    const dl = (loc.lon - userLon) * Math.PI/180;
+    const a  = Math.sin(dp/2)**2 + Math.cos(userLat*Math.PI/180)*Math.cos(loc.lat*Math.PI/180)*Math.sin(dl/2)**2;
+    const d  = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    if (d <= PROX_THRESHOLD_M) {
+      lastProxAnnounce = now;
+      const s = loc.deGarde ? 'de garde, ouverte' : 'ouverte';
+      speak(`Attention, vous vous approchez de ${loc.nom}, pharmacie ${s}, à ${Math.round(d)} mètres.`, false);
+      showProxToast(loc);
+    }
+  });
+}
+
+// Suivi de position pour alerte proximité
+if (navigator.geolocation) {
+  navigator.geolocation.watchPosition(pos => {
+    checkProximity(pos.coords.latitude, pos.coords.longitude);
+  }, null, { enableHighAccuracy:true, maximumAge:10000 });
+}
+
+/* ═══ Init : auto-filtre + première mise en avant ══════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+  // Appliquer le filtre issu de l'URL
+  if (AUTOFILTER && AUTOFILTER !== 'all' && AUTOFILTER !== '') {
+    const filterBtns = document.querySelectorAll('.f-btn');
+    filterBtns.forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${AUTOFILTER}'`)) {
+        applyFilter(b, AUTOFILTER);
+      }
+    });
+  }
+
+  // Mise en avant première pharmacie ouverte
+  const first = ALL_LOCS.findIndex(l => {
+    if (AUTOFILTER === 'garde') return l.deGarde;
+    if (AUTOFILTER === 'open')  return l.ouvert;
+    return l.ouvert;
+  });
+  if (first >= 0) setTimeout(() => {
+    hlCard(first);
+    markers[first].m.openPopup();
+    // Annonce vocale automatique de la plus proche
+    setTimeout(() => announcePharmacy(first), 2000);
+  }, 800);
+});
+
+// Charger les voix (certains navigateurs les chargent asynchronement)
+if (synth && synth.onvoiceschanged !== undefined) {
+  synth.onvoiceschanged = () => {};
+}
+</script>
+
+</body>
+</html>
