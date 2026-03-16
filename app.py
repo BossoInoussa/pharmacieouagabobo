@@ -2,14 +2,11 @@ import os
 import math
 import datetime
 import json
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from pymongo import MongoClient, GEOSPHERE
 
 app = Flask(__name__)
 
-# MONGO_URI = os.environ.get("MONGO_URL")
-# MONGO_URI = os.environ.get("MONGO_URL", "NOT_FOUND")
-# print(f"[DB] MONGO_URI = {MONGO_URI}")
 MONGO_URI = os.environ.get("MONGO_URL", "mongodb://localhost:27017/")
 
 DB_NAME   = "pharmacies_bf"
@@ -215,14 +212,18 @@ def api_status():
     return jsonify({"pharmacies": count, "groupe_garde": garde, "status": "ok"})
 
 
-# with app.app_context():
-#     auto_init_db()
+@app.route('/sw.js')
+def sw():
+    return send_from_directory('static', 'sw.js', mimetype='application/javascript')
+
+
 @app.before_request
 def init_on_first_request():
     global _db_initialized
     if not globals().get('_db_initialized'):
         auto_init_db()
         globals()['_db_initialized'] = True
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)

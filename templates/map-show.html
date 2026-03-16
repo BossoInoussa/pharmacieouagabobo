@@ -2,6 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+    <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="/static/manifest.json" />
+  <meta name="theme-color" content="#C85A00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PharmaBF — Résultats</title>
 
@@ -210,10 +215,14 @@
         <svg id="gvIco" width="15" height="15" viewBox="0 0 20 20" fill="white"><use href="#i-vol-on"/></svg>
       </div>
     </div>
-    <a href="/" class="tb-back">
+    <a href="/" class="tb-back" title="Retour accueil">
       <svg width="11" height="11" viewBox="0 0 20 20" fill="white"><path d="M14 3L6 10l8 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Retour
+      Accueil
     </a>
+    <button class="tb-back" onclick="window.location.href='/'" title="Changer de position">
+      <svg width="11" height="11" viewBox="0 0 20 20" fill="white"><circle cx="10" cy="10" r="4" fill="none" stroke="white" stroke-width="2"/><path d="M10 1v3.5M10 15.5v3.5M1 10h3.5M15.5 10h3.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+      Relocaliser
+    </button>
   </div>
 
   <!-- Corps -->
