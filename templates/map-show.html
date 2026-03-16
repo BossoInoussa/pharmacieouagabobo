@@ -41,12 +41,48 @@
     .tb-search input:focus{background:rgba(255,255,255,.32)}
     .tb-search .si{position:absolute;left:.55rem;top:50%;transform:translateY(-50%);pointer-events:none}
     .tb-pills{display:flex;gap:.25rem;flex-shrink:0}
-    @media(max-width:600px){.tb-search{display:none}.tb-brand em{display:none}.tb-pills .tb-pill{padding:.18rem .45rem;font-size:.68rem}}
+    @media(max-width:600px){
+      .tb-search{display:none}
+      .tb-brand em{display:none}
+      .tb-pills .tb-pill{padding:.18rem .45rem;font-size:.68rem}
+      .tb-back{display:none}
+      .mobile-nav{display:flex !important}
+      .layout{grid-template-rows:56px 1fr auto}
+    }
+
+    /* Barre navigation mobile en bas */
+    .mobile-nav{
+      display:none;
+      background:linear-gradient(135deg,var(--or) 0%,var(--or-l) 58%,var(--gn) 100%);
+      padding:.5rem 1rem;
+      gap:.75rem;
+      z-index:1000;
+      box-shadow:0 -3px 16px rgba(0,0,0,.22);
+    }
+    .mob-btn{
+      flex:1;
+      background:rgba(255,255,255,.2);
+      border:1.5px solid rgba(255,255,255,.35);
+      color:#fff;
+      border-radius:50px;
+      padding:.55rem .5rem;
+      font-family:'Nunito',sans-serif;
+      font-weight:700;
+      font-size:.82rem;
+      cursor:pointer;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:.35rem;
+      transition:background .2s;
+    }
+    .mob-btn:hover,.mob-btn:active{background:rgba(255,255,255,.35)}
     .tb-pill{display:flex;align-items:center;gap:.28rem;font-size:.73rem;font-weight:600;color:#fff;background:rgba(255,255,255,.15);border-radius:50px;padding:.2rem .6rem;white-space:nowrap}
     .tb-pill.g{background:rgba(255,200,50,.22)}.tb-pill.v{background:rgba(93,198,135,.22)}
     .tb-back{background:rgba(255,255,255,.18);border:none;color:#fff;border-radius:50px;padding:.28rem .7rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.22rem;transition:background .2s;white-space:nowrap;flex-shrink:0}
     .tb-back:hover{background:rgba(255,255,255,.3)}
-    @media(max-width:480px){.tb-back span{display:none}}
+
 
     /* Corps */
     .body{display:grid;grid-template-columns:340px 1fr;overflow:hidden}
@@ -298,6 +334,23 @@
     </div>
 
   </div>
+
+  <!-- Barre navigation mobile (visible uniquement sur telephone) -->
+  <div class="mobile-nav">
+    <a href="/" class="mob-btn">
+      <svg width="15" height="15" viewBox="0 0 20 20" fill="white"><path d="M14 3L6 10l8 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Accueil
+    </a>
+    <a href="/" class="mob-btn">
+      <svg width="15" height="15" viewBox="0 0 20 20" fill="white"><circle cx="10" cy="10" r="4" fill="none" stroke="white" stroke-width="2"/><path d="M10 1v3.5M10 15.5v3.5M1 10h3.5M15.5 10h3.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+      Relocaliser
+    </a>
+    <button class="mob-btn" onclick="toggleGlobalVoice()">
+      <svg id="mobVoiceIco" width="15" height="15" viewBox="0 0 20 20" fill="white"><use href="#i-vol-on"/></svg>
+      Vocal
+    </button>
+  </div>
+
 </div>
 
 <script>
