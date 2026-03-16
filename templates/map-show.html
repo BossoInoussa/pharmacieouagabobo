@@ -32,19 +32,21 @@
     .layout{display:grid;grid-template-rows:56px 1fr;height:100vh}
 
     /* Topbar */
-    .topbar{background:linear-gradient(135deg,var(--or) 0%,var(--or-l) 58%,var(--gn) 100%);display:flex;align-items:center;padding:0 1rem;gap:.75rem;box-shadow:0 3px 16px rgba(0,0,0,.22);z-index:1000;overflow:hidden}
-    .tb-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:#fff;letter-spacing:-.02em;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+    .topbar{background:linear-gradient(135deg,var(--or) 0%,var(--or-l) 58%,var(--gn) 100%);display:flex;align-items:center;padding:0 .75rem;gap:.5rem;box-shadow:0 3px 16px rgba(0,0,0,.22);z-index:1000;overflow:hidden;min-height:56px;flex-wrap:nowrap}
+    .tb-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;letter-spacing:-.02em;display:flex;align-items:center;gap:.35rem;white-space:nowrap;flex-shrink:0}
     .tb-brand em{color:var(--or-b);font-style:normal}
-    .tb-search{flex:1;max-width:300px;position:relative}
-    .tb-search input{width:100%;padding:.42rem .75rem .42rem 2.1rem;border-radius:50px;border:none;background:rgba(255,255,255,.22);color:#fff;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:500;outline:none;transition:background .2s}
+    .tb-search{flex:1;min-width:0;max-width:220px;position:relative}
+    .tb-search input{width:100%;padding:.38rem .65rem .38rem 1.9rem;border-radius:50px;border:none;background:rgba(255,255,255,.22);color:#fff;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:500;outline:none;transition:background .2s}
     .tb-search input::placeholder{color:rgba(255,255,255,.7)}
     .tb-search input:focus{background:rgba(255,255,255,.32)}
-    .tb-search .si{position:absolute;left:.6rem;top:50%;transform:translateY(-50%);pointer-events:none}
-    .tb-pills{display:flex;gap:.35rem;margin-left:auto}
+    .tb-search .si{position:absolute;left:.55rem;top:50%;transform:translateY(-50%);pointer-events:none}
+    .tb-pills{display:flex;gap:.25rem;flex-shrink:0}
+    @media(max-width:600px){.tb-search{display:none}.tb-brand em{display:none}.tb-pills .tb-pill{padding:.18rem .45rem;font-size:.68rem}}
     .tb-pill{display:flex;align-items:center;gap:.28rem;font-size:.73rem;font-weight:600;color:#fff;background:rgba(255,255,255,.15);border-radius:50px;padding:.2rem .6rem;white-space:nowrap}
     .tb-pill.g{background:rgba(255,200,50,.22)}.tb-pill.v{background:rgba(93,198,135,.22)}
-    .tb-back{background:rgba(255,255,255,.18);border:none;color:#fff;border-radius:50px;padding:.28rem .8rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;transition:background .2s;white-space:nowrap}
+    .tb-back{background:rgba(255,255,255,.18);border:none;color:#fff;border-radius:50px;padding:.28rem .7rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.22rem;transition:background .2s;white-space:nowrap;flex-shrink:0}
     .tb-back:hover{background:rgba(255,255,255,.3)}
+    @media(max-width:480px){.tb-back span{display:none}}
 
     /* Corps */
     .body{display:grid;grid-template-columns:340px 1fr;overflow:hidden}
@@ -216,13 +218,13 @@
       </div>
     </div>
     <a href="/" class="tb-back" title="Retour accueil">
-      <svg width="11" height="11" viewBox="0 0 20 20" fill="white"><path d="M14 3L6 10l8 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Accueil
+      <svg width="13" height="13" viewBox="0 0 20 20" fill="white"><path d="M14 3L6 10l8 7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Accueil</span>
     </a>
-    <button class="tb-back" onclick="window.location.href='/'" title="Changer de position">
-      <svg width="11" height="11" viewBox="0 0 20 20" fill="white"><circle cx="10" cy="10" r="4" fill="none" stroke="white" stroke-width="2"/><path d="M10 1v3.5M10 15.5v3.5M1 10h3.5M15.5 10h3.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-      Relocaliser
-    </button>
+    <a href="/" class="tb-back" title="Changer de position">
+      <svg width="13" height="13" viewBox="0 0 20 20" fill="white"><circle cx="10" cy="10" r="4" fill="none" stroke="white" stroke-width="2"/><path d="M10 1v3.5M10 15.5v3.5M1 10h3.5M15.5 10h3.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Relocaliser</span>
+    </a>
   </div>
 
   <!-- Corps -->
