@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PharmaBF Admin</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --or:#C85A00;--orl:#FFF3E8;--orb:#F7A74B;
+  --gn:#1A6B3C;--gnl:#EDFAF3;
+  --red:#C0392B;--redl:#FFF0ED;
+  --dark:#1C1007;--mid:#5C4325;--lt:#9E8060;
+  --bg:#F8F4EF;--card:#fff;--border:#E8DDD0;
+  --shadow:0 2px 12px rgba(200,90,0,.08)
+}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--dark)}
+
+/* ── Sidebar ── */
+.sidebar{position:fixed;top:0;left:0;width:240px;height:100vh;background:var(--dark);display:flex;flex-direction:column;z-index:100}
+.sb-logo{padding:1.2rem 1rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-cross{width:34px;height:34px;background:var(--or);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-cross svg{width:18px;height:18px}
+.sb-title{color:#fff;font-weight:700;font-size:1rem}
+.sb-sub{color:rgba(255,255,255,.4);font-size:.7rem}
+.sb-nav{flex:1;padding:.8rem 0;overflow-y:auto}
+.sb-section{padding:.4rem 1rem .2rem;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-top:.4rem}
+.sb-link{display:flex;align-items:center;gap:.6rem;padding:.55rem 1rem;color:rgba(255,255,255,.7);text-decoration:none;font-size:.88rem;transition:all .15s;cursor:pointer;border:none;background:none;width:100%;text-align:left}
+.sb-link:hover,.sb-link.active{background:rgba(200,90,0,.2);color:#fff}
+.sb-link.active{border-left:3px solid var(--or)}
+.sb-icon{width:18px;height:18px;opacity:.7}
+.sb-footer{padding:.8rem 1rem;border-top:1px solid rgba(255,255,255,.08)}
+.sb-user{color:rgba(255,255,255,.5);font-size:.78rem;margin-bottom:.5rem}
+.sb-logout{color:rgba(255,255,255,.5);font-size:.78rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .15s}
+.sb-logout:hover{color:#fff}
+
+/* ── Main ── */
+.main{margin-left:240px;min-height:100vh;padding:1.5rem}
+
+/* ── Header ── */
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.page-title{font-size:1.3rem;font-weight:700;color:var(--dark)}
+.page-sub{font-size:.82rem;color:var(--lt);margin-top:.15rem}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border-radius:10px;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .15s;text-decoration:none}
+.btn-or{background:var(--or);color:#fff}.btn-or:hover{opacity:.88}
+.btn-outline{background:#fff;color:var(--or);border:1.5px solid var(--or)}.btn-outline:hover{background:var(--orl)}
+.btn-red{background:var(--red);color:#fff}.btn-red:hover{opacity:.88}
+.btn-sm{padding:.35rem .75rem;font-size:.78rem}
+.btn-icon{width:32px;height:32px;padding:0;border-radius:8px;display:inline-flex;align-items:center;justify-content:center}
+
+/* ── Stats ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:var(--card);border-radius:12px;padding:1rem;border:1px solid var(--border)}
+.stat-val{font-size:1.8rem;font-weight:700;color:var(--or)}
+.stat-label{font-size:.78rem;color:var(--lt);margin-top:.2rem}
+.stat-pill{display:inline-block;background:var(--orl);color:var(--or);border-radius:20px;padding:.15rem .5rem;font-size:.7rem;font-weight:600;margin-top:.3rem}
+
+/* ── Toolbar ── */
+.toolbar{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;flex-wrap:wrap}
+.toolbar-search{flex:1;min-width:180px;position:relative}
+.toolbar-search input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:.5rem .9rem .5rem 2.2rem;font-size:.88rem;background:#fff;outline:none;transition:border .15s}
+.toolbar-search input:focus{border-color:var(--or)}
+.toolbar-search .ico{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--lt)}
+select{border:1.5px solid var(--border);border-radius:10px;padding:.5rem .8rem;font-size:.88rem;background:#fff;outline:none;color:var(--dark);cursor:pointer}
+select:focus{border-color:var(--or)}
+
+/* ── Table ── */
+.table-wrap{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden}
+.table-head{display:grid;grid-template-columns:2fr 1fr .8fr .8fr 1fr 90px;padding:.7rem 1rem;background:var(--orl);border-bottom:1px solid var(--border);font-size:.75rem;font-weight:700;color:var(--or);text-transform:uppercase;letter-spacing:.05em}
+.table-row{display:grid;grid-template-columns:2fr 1fr .8fr .8fr 1fr 90px;padding:.7rem 1rem;border-bottom:1px solid var(--border);align-items:center;transition:background .1s}
+.table-row:last-child{border-bottom:none}
+.table-row:hover{background:#faf6f0}
+.cell-nom{font-weight:600;font-size:.88rem;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cell-adresse{font-size:.78rem;color:var(--lt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{display:inline-flex;align-items:center;gap:.25rem;padding:.2rem .55rem;border-radius:20px;font-size:.72rem;font-weight:600;white-space:nowrap}
+.badge-garde{background:var(--orl);color:var(--or)}
+.badge-open{background:var(--gnl);color:var(--gn)}
+.badge-closed{background:#f5f5f5;color:#999}
+.badge-24h{background:#E8F4FC;color:#1565C0}
+.actions{display:flex;gap:.3rem;justify-content:flex-end}
+.loading{padding:2rem;text-align:center;color:var(--lt);font-size:.88rem}
+.count-badge{background:var(--orl);color:var(--or);border-radius:20px;padding:.15rem .6rem;font-size:.72rem;font-weight:700;margin-left:.4rem}
+
+/* ── Modal ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
+.overlay.show{display:flex}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:720px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 48px rgba(0,0,0,.2)}
+.modal-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
+.modal-title{font-size:1rem;font-weight:700;color:var(--dark)}
+.modal-close{background:none;border:none;cursor:pointer;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--lt);transition:all .15s}
+.modal-close:hover{background:#f5f0ea;color:var(--dark)}
+.modal-body{padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.modal-body .full{grid-column:1/-1}
+.field-group{display:flex;flex-direction:column;gap:.3rem}
+label.fl{font-size:.78rem;font-weight:600;color:var(--mid)}
+input.fi,select.fi,textarea.fi{border:1.5px solid var(--border);border-radius:10px;padding:.55rem .8rem;font-size:.88rem;outline:none;transition:border .15s;background:#fff;color:var(--dark);width:100%}
+input.fi:focus,select.fi:focus,textarea.fi:focus{border-color:var(--or)}
+textarea.fi{resize:vertical;min-height:70px}
+.map-picker{grid-column:1/-1;border-radius:12px;overflow:hidden;border:1.5px solid var(--border);height:280px}
+.map-hint{grid-column:1/-1;font-size:.78rem;color:var(--lt);display:flex;align-items:center;gap:.4rem;margin-top:-.5rem}
+.coords-row{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.switch-wrap{display:flex;align-items:center;gap:.6rem;grid-column:1/-1}
+.switch{width:40px;height:22px;background:#ddd;border-radius:11px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.switch.on{background:var(--gn)}
+.switch::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:2px;left:2px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch.on::after{transform:translateX(18px)}
+.switch-label{font-size:.85rem;color:var(--dark)}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:.6rem;position:sticky;bottom:0;background:#fff}
+.form-error{grid-column:1/-1;background:var(--redl);border:1px solid #f5b8a8;border-radius:8px;padding:.6rem .9rem;font-size:.82rem;color:var(--red);display:none}
+.form-error.show{display:block}
+
+/* ── Garde panel ── */
+.garde-panel{background:var(--card);border-radius:14px;border:1px solid var(--border);padding:1.5rem;margin-bottom:1.5rem}
+.garde-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem}
+.garde-card{background:var(--orl);border-radius:12px;padding:1rem}
+.garde-card-title{font-size:.85rem;font-weight:700;color:var(--or);margin-bottom:.5rem}
+.garde-group-display{font-size:2rem;font-weight:800;color:var(--or);line-height:1}
+.garde-group-label{font-size:.75rem;color:var(--lt);margin-top:.2rem}
+.garde-select-wrap{margin-top:.8rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.save-garde-btn{background:var(--or);color:#fff;border:none;border-radius:8px;padding:.4rem .9rem;font-size:.8rem;font-weight:600;cursor:pointer;transition:opacity .15s}
+.save-garde-btn:hover{opacity:.85}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--gn);color:#fff;padding:.7rem 1.2rem;border-radius:10px;font-size:.88rem;font-weight:600;z-index:999;transform:translateY(80px);opacity:0;transition:all .3s}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.error{background:var(--red)}
+.section-hidden{display:none}
+
+/* ── Delete confirm ── */
+.del-modal{background:#fff;border-radius:16px;padding:1.5rem;max-width:360px;width:100%;text-align:center}
+.del-icon{width:52px;height:52px;background:var(--redl);border-radius:50%;margin:0 auto .8rem;display:flex;align-items:center;justify-content:center}
+.del-title{font-weight:700;font-size:1rem;margin-bottom:.4rem}
+.del-sub{font-size:.85rem;color:var(--lt);margin-bottom:1.2rem}
+.del-actions{display:flex;gap:.6rem;justify-content:center}
+
+@media(max-width:700px){
+  .sidebar{width:100%;height:auto;position:relative;flex-direction:row;flex-wrap:wrap}
+  .main{margin-left:0;padding:1rem}
+  .table-head,.table-row{grid-template-columns:2fr 1fr 80px}
+  .table-row>*:nth-child(3),.table-row>*:nth-child(4){display:none}
+  .table-head>*:nth-child(3),.table-head>*:nth-child(4){display:none}
+  .modal-body{grid-template-columns:1fr}
+  .coords-row{grid-template-columns:1fr}
+  .garde-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-cross">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="10" y="2" width="4" height="20" rx="2" fill="white"/>
+        <rect x="2" y="10" width="20" height="4" rx="2" fill="white"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sb-title">PharmaBF</div>
+      <div class="sb-sub">Administration</div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section">Navigation</div>
+    <button class="sb-link active" onclick="showSection('pharmacies')">
+      <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Pharmacies
+    </button>
+    <button class="sb-link" onclick="showSection('garde')">
+      <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Groupes de garde
+    </button>
+    <div class="sb-section">Liens</div>
+    <a class="sb-link" href="/" target="_blank">
+      <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Voir l'application
+    </a>
+  </nav>
+  <div class="sb-footer">
+    <div class="sb-user">Connecté : admin</div>
+    <a href="/admin/logout" class="sb-logout">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Déconnexion
+    </a>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+
+  <!-- ══ SECTION PHARMACIES ══ -->
+  <div id="sec-pharmacies">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Pharmacies <span class="count-badge" id="total-count">—</span></div>
+        <div class="page-sub">Gérer, ajouter et modifier les pharmacies</div>
+      </div>
+      <button class="btn btn-or" onclick="openForm()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Nouvelle pharmacie
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val" id="st-total">—</div>
+        <div class="stat-label">Total pharmacies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="st-ouaga">—</div>
+        <div class="stat-label">Ouagadougou</div>
+        <div class="stat-pill">Gr. <span id="st-gr-ouaga">—</span> en garde</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="st-bobo">—</div>
+        <div class="stat-label">Bobo-Dioulasso</div>
+        <div class="stat-pill">Gr. <span id="st-gr-bobo">—</span> en garde</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="st-24h">—</div>
+        <div class="stat-label">Ouvertes 24h/24</div>
+      </div>
+      <div class="stat-card" style="background:var(--orl)">
+        <div class="stat-val" id="st-gr1" style="color:var(--or)">—</div>
+        <div class="stat-label">Groupe 1</div>
+      </div>
+      <div class="stat-card" style="background:var(--orl)">
+        <div class="stat-val" id="st-gr2" style="color:var(--or)">—</div>
+        <div class="stat-label">Groupe 2</div>
+      </div>
+      <div class="stat-card" style="background:var(--orl)">
+        <div class="stat-val" id="st-gr3" style="color:var(--or)">—</div>
+        <div class="stat-label">Groupe 3</div>
+      </div>
+      <div class="stat-card" style="background:var(--orl)">
+        <div class="stat-val" id="st-gr4" style="color:var(--or)">—</div>
+        <div class="stat-label">Groupe 4</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-search">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Rechercher par nom, adresse..." oninput="filterChanged()">
+      </div>
+      <select id="filter-ville" onchange="filterChanged()">
+        <option value="">Toutes les villes</option>
+        <option value="Ouagadougou">Ouagadougou</option>
+        <option value="Bobo-Dioulasso">Bobo-Dioulasso</option>
+      </select>
+      <select id="filter-groupe" onchange="filterChanged()">
+        <option value="">Tous les groupes</option>
+        <option value="1">Groupe 1</option>
+        <option value="2">Groupe 2</option>
+        <option value="3">Groupe 3</option>
+        <option value="4">Groupe 4</option>
+      </select>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <div class="table-head">
+        <span>Pharmacie</span>
+        <span>Ville</span>
+        <span>Groupe</span>
+        <span>Statut</span>
+        <span>Téléphone</span>
+        <span></span>
+      </div>
+      <div id="pharma-list">
+        <div class="loading">Chargement...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION GARDE ══ -->
+  <div id="sec-garde" class="section-hidden">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Groupes de garde</div>
+        <div class="page-sub">Configurer le groupe actif par ville</div>
+      </div>
+    </div>
+
+    <div class="garde-panel">
+      <div style="font-weight:600;color:var(--dark)">Configuration actuelle</div>
+      <div class="garde-grid">
+        <div class="garde-card">
+          <div class="garde-card-title">🏙 Ouagadougou</div>
+          <div class="garde-group-display" id="gd-ouaga">—</div>
+          <div class="garde-group-label">groupe actif en ce moment</div>
+          <div class="garde-select-wrap">
+            <select id="sel-ouaga">
+              <option value="1">Groupe 1</option>
+              <option value="2">Groupe 2</option>
+              <option value="3">Groupe 3</option>
+              <option value="4">Groupe 4</option>
+            </select>
+            <button class="save-garde-btn" onclick="saveGarde('ouagadougou')">Enregistrer</button>
+          </div>
+        </div>
+        <div class="garde-card">
+          <div class="garde-card-title">🏙 Bobo-Dioulasso</div>
+          <div class="garde-group-display" id="gd-bobo">—</div>
+          <div class="garde-group-label">groupe actif en ce moment</div>
+          <div class="garde-select-wrap">
+            <select id="sel-bobo">
+              <option value="1">Groupe 1</option>
+              <option value="2">Groupe 2</option>
+              <option value="3">Groupe 3</option>
+              <option value="4">Groupe 4</option>
+            </select>
+            <button class="save-garde-btn" onclick="saveGarde('bobo_dioulasso')">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ MODAL FORMULAIRE ══ -->
+<div class="overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">Nouvelle pharmacie</span>
+      <button class="modal-close" onclick="closeForm()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-error" id="form-error"></div>
+
+      <div class="field-group full">
+        <label class="fl">Nom de la pharmacie *</label>
+        <input class="fi" type="text" id="f-nom" placeholder="ex : Pharmacie Angèle">
+      </div>
+
+      <div class="field-group">
+        <label class="fl">Ville *</label>
+        <select class="fi" id="f-ville">
+          <option value="">— Choisir —</option>
+          <option value="Ouagadougou">Ouagadougou</option>
+          <option value="Bobo-Dioulasso">Bobo-Dioulasso</option>
+          <option value="Autre">Autre</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="fl">Groupe de garde</label>
+        <select class="fi" id="f-groupe">
+          <option value="">— Aucun —</option>
+          <option value="1">Groupe 1</option>
+          <option value="2">Groupe 2</option>
+          <option value="3">Groupe 3</option>
+          <option value="4">Groupe 4</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="fl">Téléphone</label>
+        <input class="fi" type="tel" id="f-tel" placeholder="+22625...">
+      </div>
+
+      <div class="field-group">
+        <label class="fl">Source</label>
+        <select class="fi" id="f-source">
+          <option value="Admin">Saisie manuelle (Admin)</option>
+          <option value="Google Maps">Google Maps</option>
+          <option value="OpenStreetMap">OpenStreetMap</option>
+          <option value="ANAC">ANAC</option>
+          <option value="Terrain">Enquête terrain</option>
+        </select>
+      </div>
+
+      <div class="field-group full">
+        <label class="fl">Adresse / Description du lieu</label>
+        <textarea class="fi" id="f-adresse" placeholder="ex : Secteur 15, face au carrefour du..."></textarea>
+      </div>
+
+      <!-- Carte pour choisir la position -->
+      <div class="field-group full" style="gap:.5rem">
+        <label class="fl">Position GPS — cliquez sur la carte pour placer le marqueur *</label>
+        <div id="map-picker" class="map-picker"></div>
+      </div>
+
+      <div class="map-hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        Cliquez sur la carte pour placer la pharmacie. Vous pouvez aussi saisir les coordonnées directement.
+      </div>
+
+      <div class="coords-row">
+        <div class="field-group">
+          <label class="fl">Longitude *</label>
+          <input class="fi" type="number" id="f-lon" step="0.0001" placeholder="-4.2964" oninput="updateMarkerFromInput()">
+        </div>
+        <div class="field-group">
+          <label class="fl">Latitude *</label>
+          <input class="fi" type="number" id="f-lat" step="0.0001" placeholder="11.1775" oninput="updateMarkerFromInput()">
+        </div>
+      </div>
+
+      <div class="switch-wrap">
+        <div class="switch" id="sw-24h" onclick="toggleSwitch()"></div>
+        <span class="switch-label">Ouvert 24h/24 en permanence (hors rotation de garde)</span>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeForm()">Annuler</button>
+      <button class="btn btn-or" id="save-btn" onclick="savePharmacies()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Enregistrer
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal suppression -->
+<div class="overlay" id="del-overlay">
+  <div class="del-modal">
+    <div class="del-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C0392B" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+    </div>
+    <div class="del-title">Supprimer la pharmacie ?</div>
+    <div class="del-sub" id="del-name">Cette action est irréversible.</div>
+    <div class="del-actions">
+      <button class="btn btn-outline" onclick="closeDelete()">Annuler</button>
+      <button class="btn btn-red" onclick="confirmDelete()">Supprimer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ── State ────────────────────────────────────────────────────────
+let editId = null;
+let deleteId = null;
+let mapPicker = null;
+let pickerMarker = null;
+let sw24h = false;
+let filterTimer = null;
+
+// ── Init ─────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadStats();
+  loadPharmacies();
+  loadGardeConfig();
+});
+
+function showSection(sec) {
+  document.getElementById('sec-pharmacies').classList.toggle('section-hidden', sec !== 'pharmacies');
+  document.getElementById('sec-garde').classList.toggle('section-hidden', sec !== 'garde');
+  document.querySelectorAll('.sb-link').forEach(l => l.classList.remove('active'));
+  event.target.closest('.sb-link').classList.add('active');
+}
+
+// ── Stats ─────────────────────────────────────────────────────────
+async function loadStats() {
+  const r = await fetch('/admin/api/stats');
+  const d = await r.json();
+  document.getElementById('st-total').textContent = d.total;
+  document.getElementById('st-ouaga').textContent = d.ouaga;
+  document.getElementById('st-bobo').textContent  = d.bobo;
+  document.getElementById('st-24h').textContent   = d.garde24h;
+  document.getElementById('st-gr-ouaga').textContent = d.groupe_ouaga;
+  document.getElementById('st-gr-bobo').textContent  = d.groupe_bobo;
+  document.getElementById('total-count').textContent = d.total;
+  for (let g=1; g<=4; g++) {
+    document.getElementById(`st-gr${g}`).textContent = d.par_groupe[g] || 0;
+  }
+}
+
+// ── Table ─────────────────────────────────────────────────────────
+async function loadPharmacies() {
+  const q = document.getElementById('search-input').value;
+  const ville = document.getElementById('filter-ville').value;
+  const groupe = document.getElementById('filter-groupe').value;
+  const params = new URLSearchParams();
+  if (q) params.set('q', q);
+  if (ville) params.set('ville', ville);
+  if (groupe) params.set('groupe', groupe);
+  const r = await fetch('/admin/pharmacies?' + params);
+  const list = await r.json();
+  renderTable(list);
+}
+
+function filterChanged() {
+  clearTimeout(filterTimer);
+  filterTimer = setTimeout(loadPharmacies, 300);
+}
+
+function renderTable(list) {
+  const el = document.getElementById('pharma-list');
+  if (!list.length) { el.innerHTML = '<div class="loading">Aucune pharmacie trouvée</div>'; return; }
+  el.innerHTML = list.map(p => `
+    <div class="table-row">
+      <div>
+        <div class="cell-nom">${p.nom}</div>
+        <div class="cell-adresse">${p.adresse || '—'}</div>
+      </div>
+      <div><span class="badge badge-garde">${p.ville}</span></div>
+      <div>${p.groupe_garde ? `<span class="badge badge-garde">Gr.${p.groupe_garde}</span>` : '<span class="badge badge-closed">—</span>'}</div>
+      <div>${p.ouvert_24h ? '<span class="badge badge-24h">24h/24</span>' : '<span class="badge badge-closed">Normal</span>'}</div>
+      <div style="font-size:.82rem;color:var(--lt)">${p.telephone || '—'}</div>
+      <div class="actions">
+        <button class="btn btn-outline btn-sm btn-icon" onclick="openEdit('${p._id}')" title="Modifier">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button>
+        <button class="btn btn-red btn-sm btn-icon" onclick="openDelete('${p._id}','${p.nom.replace(/'/g,"\\'")} ')" title="Supprimer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+// ── Map picker ────────────────────────────────────────────────────
+function initMapPicker(lat, lon) {
+  if (mapPicker) { mapPicker.remove(); mapPicker = null; pickerMarker = null; }
+  setTimeout(() => {
+    const center = (lat && lon) ? [lat, lon] : [12.36, -1.53];
+    const zoom   = (lat && lon) ? 16 : 13;
+    mapPicker = L.map('map-picker').setView(center, zoom);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap © CARTO', maxZoom: 19
+    }).addTo(mapPicker);
+
+    const icon = L.divIcon({ className: '', iconSize: [30, 30], iconAnchor: [15, 15],
+      html: `<div style="width:30px;height:30px;background:#C85A00;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center">
+        <div style="width:4px;height:16px;background:#fff;position:absolute"></div>
+        <div style="width:16px;height:4px;background:#fff;position:absolute"></div></div>` });
+
+    if (lat && lon) {
+      pickerMarker = L.marker([lat, lon], { icon, draggable: true }).addTo(mapPicker);
+      pickerMarker.on('dragend', e => {
+        const ll = e.target.getLatLng();
+        document.getElementById('f-lon').value = ll.lng.toFixed(6);
+        document.getElementById('f-lat').value = ll.lat.toFixed(6);
+      });
+    }
+
+    mapPicker.on('click', e => {
+      const ll = e.latlng;
+      document.getElementById('f-lon').value = ll.lng.toFixed(6);
+      document.getElementById('f-lat').value = ll.lat.toFixed(6);
+      if (pickerMarker) pickerMarker.setLatLng(ll);
+      else { pickerMarker = L.marker(ll, { icon, draggable: true }).addTo(mapPicker);
+             pickerMarker.on('dragend', ev => {
+               const l2 = ev.target.getLatLng();
+               document.getElementById('f-lon').value = l2.lng.toFixed(6);
+               document.getElementById('f-lat').value = l2.lat.toFixed(6);
+             }); }
+    });
+  }, 100);
+}
+
+function updateMarkerFromInput() {
+  const lon = parseFloat(document.getElementById('f-lon').value);
+  const lat = parseFloat(document.getElementById('f-lat').value);
+  if (!mapPicker || isNaN(lon) || isNaN(lat)) return;
+  const icon = L.divIcon({ className: '', iconSize: [30, 30], iconAnchor: [15, 15],
+    html: `<div style="width:30px;height:30px;background:#C85A00;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center">
+      <div style="width:4px;height:16px;background:#fff;position:absolute"></div>
+      <div style="width:16px;height:4px;background:#fff;position:absolute"></div></div>` });
+  if (pickerMarker) pickerMarker.setLatLng([lat, lon]);
+  else { pickerMarker = L.marker([lat, lon], { icon, draggable: true }).addTo(mapPicker); }
+  mapPicker.setView([lat, lon], 16);
+}
+
+// ── Form ──────────────────────────────────────────────────────────
+function openForm() {
+  editId = null;
+  document.getElementById('modal-title').textContent = 'Nouvelle pharmacie';
+  document.getElementById('f-nom').value = '';
+  document.getElementById('f-ville').value = '';
+  document.getElementById('f-groupe').value = '';
+  document.getElementById('f-tel').value = '';
+  document.getElementById('f-source').value = 'Admin';
+  document.getElementById('f-adresse').value = '';
+  document.getElementById('f-lon').value = '';
+  document.getElementById('f-lat').value = '';
+  sw24h = false; document.getElementById('sw-24h').classList.remove('on');
+  document.getElementById('form-error').classList.remove('show');
+  document.getElementById('modal-overlay').classList.add('show');
+  initMapPicker(null, null);
+}
+
+async function openEdit(pid) {
+  const r = await fetch(`/admin/api/pharmacie/${pid}`);
+  const d = await r.json();
+  if (!d.ok) { showToast('Erreur chargement', true); return; }
+  const p = d.pharmacie;
+  editId = pid;
+  document.getElementById('modal-title').textContent = 'Modifier la pharmacie';
+  document.getElementById('f-nom').value    = p.nom || '';
+  document.getElementById('f-ville').value  = p.ville || '';
+  document.getElementById('f-groupe').value = p.groupe_garde || '';
+  document.getElementById('f-tel').value    = p.telephone || '';
+  document.getElementById('f-source').value = p.source || 'Admin';
+  document.getElementById('f-adresse').value = p.adresse || '';
+  document.getElementById('f-lon').value    = p.lon || '';
+  document.getElementById('f-lat').value    = p.lat || '';
+  sw24h = !!p.ouvert_24h;
+  document.getElementById('sw-24h').classList.toggle('on', sw24h);
+  document.getElementById('form-error').classList.remove('show');
+  document.getElementById('modal-overlay').classList.add('show');
+  initMapPicker(p.lat, p.lon);
+}
+
+function closeForm() {
+  document.getElementById('modal-overlay').classList.remove('show');
+  if (mapPicker) { mapPicker.remove(); mapPicker = null; pickerMarker = null; }
+}
+
+function toggleSwitch() {
+  sw24h = !sw24h;
+  document.getElementById('sw-24h').classList.toggle('on', sw24h);
+}
+
+async function savePharmacies() {
+  const errEl = document.getElementById('form-error');
+  errEl.classList.remove('show');
+  const nom   = document.getElementById('f-nom').value.trim();
+  const ville = document.getElementById('f-ville').value;
+  const lon   = document.getElementById('f-lon').value;
+  const lat   = document.getElementById('f-lat').value;
+  if (!nom)   { errEl.textContent = 'Le nom est obligatoire'; errEl.classList.add('show'); return; }
+  if (!ville) { errEl.textContent = 'La ville est obligatoire'; errEl.classList.add('show'); return; }
+  if (!lon || !lat) { errEl.textContent = 'Cliquez sur la carte pour définir la position GPS'; errEl.classList.add('show'); return; }
+  const body = { nom, ville, lon: parseFloat(lon), lat: parseFloat(lat),
+    telephone: document.getElementById('f-tel').value.trim(),
+    adresse: document.getElementById('f-adresse').value.trim(),
+    groupe_garde: document.getElementById('f-groupe').value || null,
+    ouvert_24h: sw24h,
+    source: document.getElementById('f-source').value };
+  const url = editId ? `/admin/api/pharmacie/${editId}` : '/admin/api/pharmacie';
+  const method = editId ? 'PUT' : 'POST';
+  const r = await fetch(url, { method, headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+  const d = await r.json();
+  if (d.ok) {
+    closeForm();
+    showToast(editId ? 'Pharmacie modifiée ✓' : 'Pharmacie ajoutée ✓');
+    loadPharmacies(); loadStats();
+  } else { errEl.textContent = d.error || 'Erreur'; errEl.classList.add('show'); }
+}
+
+// ── Delete ────────────────────────────────────────────────────────
+function openDelete(pid, nom) {
+  deleteId = pid;
+  document.getElementById('del-name').textContent = `Supprimer "${nom}" ? Cette action est irréversible.`;
+  document.getElementById('del-overlay').classList.add('show');
+}
+function closeDelete() {
+  document.getElementById('del-overlay').classList.remove('show');
+  deleteId = null;
+}
+async function confirmDelete() {
+  if (!deleteId) return;
+  const r = await fetch(`/admin/api/pharmacie/${deleteId}`, { method: 'DELETE' });
+  const d = await r.json();
+  closeDelete();
+  if (d.ok) { showToast('Pharmacie supprimée'); loadPharmacies(); loadStats(); }
+  else showToast('Erreur suppression', true);
+}
+
+// ── Garde ─────────────────────────────────────────────────────────
+async function loadGardeConfig() {
+  const r = await fetch('/admin/api/garde');
+  const d = await r.json();
+  if (!d.ok) return;
+  document.getElementById('gd-ouaga').textContent = d.groupe_actuel['Ouagadougou'];
+  document.getElementById('gd-bobo').textContent  = d.groupe_actuel['Bobo-Dioulasso'];
+  document.getElementById('sel-ouaga').value = d.groupe_actuel['Ouagadougou'];
+  document.getElementById('sel-bobo').value  = d.groupe_actuel['Bobo-Dioulasso'];
+}
+
+async function saveGarde(ville) {
+  const key = ville === 'ouagadougou' ? 'ouagadougou_groupe' : 'bobo_dioulasso_groupe';
+  const selId = ville === 'ouagadougou' ? 'sel-ouaga' : 'sel-bobo';
+  const val = document.getElementById(selId).value;
+  const body = {}; body[key] = parseInt(val);
+  const r = await fetch('/admin/api/garde', { method: 'POST',
+    headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+  const d = await r.json();
+  if (d.ok) { showToast('Groupe de garde mis à jour ✓'); loadGardeConfig(); loadStats(); }
+  else showToast('Erreur', true);
+}
+
+// ── Toast ─────────────────────────────────────────────────────────
+function showToast(msg, isError=false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.toggle('error', isError);
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// Fermer en cliquant dehors
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeForm();
+});
+document.getElementById('del-overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeDelete();
+});
+</script>
+</body>
+</html>

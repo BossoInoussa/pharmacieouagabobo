@@ -190,6 +190,11 @@
     .pop-btns{display:flex;gap:.35rem;margin-top:.5rem}
     .pop-btn{flex:1;padding:.35rem;border-radius:7px;border:1.5px solid var(--or);background:var(--or);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:.73rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.25rem}
     .pop-btn.voice{background:var(--gn);border-color:var(--gn)}
+  .map-type-switcher{position:absolute;top:10px;right:10px;z-index:1000;display:flex;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .map-type-btn{padding:.4rem .75rem;font-size:.72rem;font-weight:600;border:none;cursor:pointer;transition:all .15s;background:#fff;color:#555}
+  .map-type-btn:first-child{border-right:1px solid #eee}
+  .map-type-btn.active{background:#C85A00;color:#fff}
+  .map-type-btn:hover:not(.active){background:#f5f0ea;color:#C85A00}
   </style>
 </head>
 <body>
@@ -311,7 +316,7 @@
 
     <!-- Carte -->
     <div class="map-wrap">
-      <div id="map"></div>
+      <div id="map"><div class="map-type-switcher"><button class="map-type-btn active" id="btn-map" onclick="switchMapType('map')">Plan</button><button class="map-type-btn" id="btn-sat" onclick="switchMapType('satellite')">Satellite</button><button class="map-type-btn" id="btn-dark" onclick="switchMapType('dark')">Nuit</button></div></div>
 
       <!-- Toast proximité -->
       <div class="prox-toast" id="proxToast">
@@ -497,9 +502,20 @@ function mkPopup(loc, idx) {
 
 /* ═══ Carte Leaflet ════════════════════════════════════════════ */
 const map = L.map('map', { zoomControl: false }).setView([USER_LAT, USER_LON], 14);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+const tileVoyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  subdomains:'abcd', maxZoom:20,
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
+});
+const tileSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom:19,
+  attribution:'Tiles &copy; Esri &mdash; Source: Esri, USGS, NOAA'
+});
+const tileDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  subdomains:'abcd', maxZoom:20,
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
+});
+let currentTile = tileVoyager;
+tileVoyager.addTo(map);
 L.control.zoom({ position:'topleft' }).addTo(map);
 
 L.marker([USER_LAT, USER_LON], {
