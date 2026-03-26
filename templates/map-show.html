@@ -190,11 +190,11 @@
     .pop-btns{display:flex;gap:.35rem;margin-top:.5rem}
     .pop-btn{flex:1;padding:.35rem;border-radius:7px;border:1.5px solid var(--or);background:var(--or);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:.73rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.25rem}
     .pop-btn.voice{background:var(--gn);border-color:var(--gn)}
-  .map-type-switcher{position:absolute;top:10px;right:10px;z-index:1000;display:flex;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-  .map-type-btn{padding:.4rem .75rem;font-size:.72rem;font-weight:600;border:none;cursor:pointer;transition:all .15s;background:#fff;color:#555}
-  .map-type-btn:first-child{border-right:1px solid #eee}
-  .map-type-btn.active{background:#C85A00;color:#fff}
-  .map-type-btn:hover:not(.active){background:#f5f0ea;color:#C85A00}
+  .mtype-bar{position:absolute;top:10px;right:50px;z-index:900;display:flex;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .mtype-btn{padding:.35rem .65rem;font-size:.7rem;font-weight:700;border:none;cursor:pointer;background:#fff;color:#555;transition:all .15s;border-right:1px solid #eee;font-family:'Nunito',sans-serif}
+  .mtype-btn:last-child{border-right:none}
+  .mtype-btn.active{background:#C85A00;color:#fff}
+  .mtype-btn:hover:not(.active){background:#f5f0ea;color:#C85A00}
   </style>
 </head>
 <body>
@@ -316,7 +316,12 @@
 
     <!-- Carte -->
     <div class="map-wrap">
-      <div id="map"><div class="map-type-switcher"><button class="map-type-btn active" id="btn-map" onclick="switchMapType('map')">Plan</button><button class="map-type-btn" id="btn-sat" onclick="switchMapType('satellite')">Satellite</button><button class="map-type-btn" id="btn-dark" onclick="switchMapType('dark')">Nuit</button></div></div>
+      <div id="map">
+  <div class="mtype-bar">
+    <button class="mtype-btn active" data-t="map" onclick="switchTile('map')">Plan</button>
+    <button class="mtype-btn" data-t="sat" onclick="switchTile('sat')">Satellite</button>
+    <button class="mtype-btn" data-t="dark" onclick="switchTile('dark')">Nuit</button>
+  </div></div>
 
       <!-- Toast proximité -->
       <div class="prox-toast" id="proxToast">
@@ -502,20 +507,28 @@ function mkPopup(loc, idx) {
 
 /* ═══ Carte Leaflet ════════════════════════════════════════════ */
 const map = L.map('map', { zoomControl: false }).setView([USER_LAT, USER_LON], 14);
+// Tuiles style Google Maps (CartoDB Voyager)
 const tileVoyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
   subdomains:'abcd', maxZoom:20,
-  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
 });
-const tileSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-  maxZoom:19,
-  attribution:'Tiles &copy; Esri &mdash; Source: Esri, USGS, NOAA'
+const tileSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom:19, attribution:'Tiles &copy; Esri'
 });
 const tileDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
   subdomains:'abcd', maxZoom:20,
-  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
+  attribution:'&copy; OSM &copy; CARTO'
 });
-let currentTile = tileVoyager;
+let _currentTile = tileVoyager;
 tileVoyager.addTo(map);
+
+function switchTile(type) {
+  map.removeLayer(_currentTile);
+  _currentTile = type==='sat' ? tileSat : type==='dark' ? tileDark : tileVoyager;
+  _currentTile.addTo(map);
+  document.querySelectorAll('.mtype-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.mtype-btn[data-t="'+type+'"]').classList.add('active');
+}
 L.control.zoom({ position:'topleft' }).addTo(map);
 
 L.marker([USER_LAT, USER_LON], {
@@ -895,11 +908,40 @@ function checkProximity(userLat, userLon) {
   });
 }
 
-// Suivi de position pour alerte proximité
+// ═══ Suivi GPS en temps réel ════════════════════════════════════
+// Met à jour le marqueur utilisateur ET recalcule l'itinéraire en cours
+let userMarker = null;
+let _lastLat = USER_LAT, _lastLon = USER_LON;
+
+function updateUserPosition(lat, lon) {
+  _lastLat = lat; _lastLon = lon;
+  // Mettre à jour le marqueur utilisateur
+  if (userMarker) {
+    userMarker.setLatLng([lat, lon]);
+  } else {
+    userMarker = L.marker([lat, lon], {
+      icon: L.divIcon({ html: mkUserSVG(), iconSize:[44,44], iconAnchor:[22,22], className:'' }),
+      zIndexOffset: 1000
+    }).addTo(map).bindPopup('<div class="pop"><div class="pop-n">Votre position</div></div>');
+  }
+  // Si un itinéraire est en cours, recalculer depuis la nouvelle position
+  if (routingControl) {
+    const wp = routingControl.getWaypoints();
+    if (wp && wp.length >= 2) {
+      routingControl.setWaypoints([
+        L.latLng(lat, lon),
+        wp[wp.length - 1].latLng
+      ]);
+    }
+  }
+  // Alertes de proximité
+  checkProximity(lat, lon);
+}
+
 if (navigator.geolocation) {
   navigator.geolocation.watchPosition(pos => {
-    checkProximity(pos.coords.latitude, pos.coords.longitude);
-  }, null, { enableHighAccuracy:true, maximumAge:10000 });
+    updateUserPosition(pos.coords.latitude, pos.coords.longitude);
+  }, null, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
 }
 
 /* ═══ Init : auto-filtre + première mise en avant ══════════════ */
