@@ -368,7 +368,19 @@
 const USER_LAT    = Number("{{ latitude }}");
 const USER_LON    = Number("{{ longitude }}");
 const ALL_LOCS    = {{ locations | tojson }};
-const GARDE_GROUP = {{ garde_group }};
+const GARDE_GROUP  = {{ groupe_ouaga }};
+const GARDE_OUAGA  = {{ groupe_ouaga }};
+const GARDE_BOBO   = {{ groupe_bobo }};
+{% if ville_filtre %}
+const VILLE_FILTRE = "{{ ville_filtre }}";
+{% else %}
+const VILLE_FILTRE = "";
+{% endif %}
+{% if map_center %}
+const MAP_CENTER = { lat: {{ map_center.lat }}, lon: {{ map_center.lon }}, zoom: {{ map_center.zoom }} };
+{% else %}
+const MAP_CENTER = null;
+{% endif %}
 const AUTOFILTER  = "{{ autofilter }}";
 
 /* ═══ Stats ════════════════════════════════════════════════════ */
@@ -506,7 +518,9 @@ function mkPopup(loc, idx) {
 }
 
 /* ═══ Carte Leaflet ════════════════════════════════════════════ */
-const map = L.map('map', { zoomControl: false }).setView([USER_LAT, USER_LON], 14);
+const _ic = MAP_CENTER ? [MAP_CENTER.lat, MAP_CENTER.lon] : [USER_LAT, USER_LON];
+const _iz = MAP_CENTER ? MAP_CENTER.zoom : 14;
+const map = L.map('map', { zoomControl: false }).setView(_ic, _iz);
 // Tuiles style Google Maps (CartoDB Voyager)
 const tileVoyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
   subdomains:'abcd', maxZoom:20,
